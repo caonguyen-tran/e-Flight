@@ -50,7 +50,7 @@
             </div>
 
             <div>
-                <button id="hideButton">Hủy</button>
+                <button id="hideButton" href="">Hủy</button>
                 <a href="" type="summit">Tìm chuyến bay</a>
             </div>
         </form>
@@ -123,8 +123,8 @@
                     <p>Trạng thái: Còn chỗ</p>
                     <p>Điểm dừng chân: SB1, Sb2</p>
                 </div>
-                <h2></h2>
-                <h3>12:00-14:00</h3>
+                <h2>{{flight.departure_time.day}}/{{flight.departure_time.month}}/{{flight.departure_time.year}}</h2>
+                <h3>{{flight.departure_time.hour}}:{{flight.departure_time.minute}}</h3>
                 <button>Chọn</button>
             </div>
         </div>
