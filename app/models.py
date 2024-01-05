@@ -1,9 +1,10 @@
-from sqlalchemy import Integer, String, Float, DateTime, Column, Boolean, Enum, ForeignKey, UniqueConstraint
+from sqlalchemy import Integer, String, Float, DateTime, Column, Boolean, Enum, ForeignKey, UniqueConstraint, event
 from sqlalchemy.orm import relationship
 import enum
 from app import db
 from datetime import datetime
 from flask_login import UserMixin
+import hashlib
 
 
 class Role(enum.Enum):
@@ -28,6 +29,13 @@ class User(db.Model, UserMixin):
         return self.username
 
 
+@event.listens_for(User.password, 'set', retval=True)
+def hash_user_password(target, pw, npw, init):
+    if pw != npw:
+        return str(hashlib.md5(pw.strip().encode('utf-8')).hexdigest())
+    return pw
+
+
 class BaseModel(db.Model):
     __abstract__ = True
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -47,7 +55,7 @@ class Company(BaseModel):
 class Aircraft(BaseModel):
     name = Column(String(50), nullable=False, unique=True)
     total_seat = Column(Integer, nullable=False, default=250)
-    airline_company_id = Column(Integer, ForeignKey(Company.id), nullable=False)
+    company_id = Column(Integer, ForeignKey(Company.id), nullable=False)
     company = relationship('Company', backref='aircraft', lazy=True)
 
     def __str__(self):
@@ -56,23 +64,23 @@ class Aircraft(BaseModel):
 
 class Airport(BaseModel):
     name = Column(String(50), nullable=False, unique=True)
+    locate = Column(String(50), nullable=False)
 
     def __str__(self):
         return self.name
 
 
 class Route(BaseModel):
-    locate_from = Column(String(50), nullable=False)
-    locate_to = Column(String(50), nullable=False)
+    name = Column(String(50), nullable=False)
     airport_from_id = Column(Integer, ForeignKey(Airport.id), nullable=False)
     airport_to_id = Column(Integer, ForeignKey(Airport.id), nullable=False)
-    UniqueConstraint('airport_from', 'airport_to')
+    UniqueConstraint('airport_from_id', 'airport_to_id')
     distance_road = Column(Float, nullable=False)
     airport_from = relationship('Airport', foreign_keys=[airport_from_id], lazy=True)
     airport_to = relationship('Airport', foreign_keys=[airport_to_id], lazy=True)
 
     def __str__(self):
-        return str('Từ ' + self.locate_from + ' đi ' + self.locate_to)
+        return self.name
 
 
 class Flight(BaseModel):
@@ -80,7 +88,7 @@ class Flight(BaseModel):
     arrival_time = Column(Integer, default=30)
     departure_time = Column(DateTime, nullable=False)
     aircraft_id = Column(Integer, ForeignKey(Aircraft.id), nullable=False)
-    flight_route = Column(Integer, ForeignKey(Route.id), nullable=False)
+    route_id = Column(Integer, ForeignKey(Route.id), nullable=False)
     emp_id = Column(Integer, ForeignKey(User.id), nullable=False)
     aircraft = relationship('Aircraft', backref='flight', lazy=True)
     routes = relationship('Route', backref='flight', lazy=True)
@@ -95,9 +103,9 @@ class Stopover(db.Model):
     time_break = Column(Integer, nullable=False, default=20)
     note = Column(String(100), nullable=True)
     airport_id = Column(Integer, ForeignKey(Airport.id), nullable=False)
-    flight_route_id = Column(Integer, ForeignKey(Route.id), nullable=False)
-    airport = relationship('Airport', backref='stopovers', lazy=True)
-    route = relationship('Route', backref='stopovers', lazy=True)
+    route_id = Column(Integer, ForeignKey(Route.id), nullable=False)
+    airport = relationship('Airport', lazy=True)
+    route = relationship('Route', lazy=True)
 
 
 class SeatClass(BaseModel):
@@ -114,6 +122,9 @@ class AirSeatClass(db.Model):
     price = Column(Float, nullable=False)
     seat_class = relationship('SeatClass', backref='air_seat_classes', lazy=True)
     aircraft = relationship('Aircraft', backref='air_seat_classes', lazy=True)
+
+    def __str__(self):
+        return "May bay " + str(self.aircraft_id) + ', Hang ' + str(self.seat_class_id)
 
 
 class Seat(BaseModel):
@@ -137,11 +148,10 @@ if __name__ == "__main__":
     from app import app
     import hashlib
 
-    with app.app_context():
-        db.create_all()
-
-        # u = User(firstname='nguyen', lastname='tran', username='admin',
-        #          password=str(hashlib.md5('Admin@123'.encode('utf-8')).hexdigest()), gender='Male',
-        #          date_of_birth='2003-11-10 15:02:25', user_role=Role.ADMIN)
-        # db.session.add(u)
-        # db.session.commit()
+    # with app.app_context():
+    #     w = db.create_all()
+    #     u = User(firstname='nguyen', lastname='tran', username='admin',
+    #              password=str(hashlib.md5('Admin@123'.encode('utf-8')).hexdigest()), gender='Male',
+    #              date_of_birth='2003-11-10 15:02:25', user_role=Role.ADMIN)
+    #     db.session.add(u)
+    #     db.session.commit()

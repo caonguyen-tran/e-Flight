@@ -26,7 +26,7 @@ class UserView(AuthenticatedSystemAdmin):
 
 
 class FlightView(AuthenticatedSystemAdmin):
-    column_list = ['id', 'name', 'active', 'departure_time', 'arrival_time', 'aircraft_id', 'flight_route', 'emp_id']
+    column_list = ['id', 'name', 'active', 'departure_time', 'arrival_time', 'aircraft_id', 'route_id', 'emp_id']
 
 
 class AircraftView(AuthenticatedSystemAdmin):
@@ -34,16 +34,17 @@ class AircraftView(AuthenticatedSystemAdmin):
 
 
 class AirportView(AuthenticatedSystemAdmin):
-    column_list = ['id', 'name']
+    column_list = ['id', 'name', 'locate']
 
 
 class AirlineCompanyView(AuthenticatedSystemAdmin):
     column_list = ['id', 'name', 'active', 'created_date', 'logo']
 
 
-class FlightRouteView(AuthenticatedSystemAdmin):
-    column_list = ['id', 'active', 'created_date', 'locate_from', 'locate_to', 'distance_road', 'airport_from',
+class RouteView(AuthenticatedSystemAdmin):
+    column_list = ['id', 'active', 'name', 'created_date', 'distance_road', 'airport_from',
                    'airport_to']
+    column_filters = ['name']
 
 
 class SeatView(AuthenticatedSystemAdmin):
@@ -51,7 +52,7 @@ class SeatView(AuthenticatedSystemAdmin):
 
 
 class StopoverView(AuthenticatedSystemAdmin):
-    column_list = ['id', 'time_break', 'airport_id', 'flight_route_id', 'note']
+    column_list = ['id', 'time_break', 'airport_id', 'route_id', 'note']
 
 
 class SeatClassView(AuthenticatedSystemAdmin):
@@ -59,14 +60,14 @@ class SeatClassView(AuthenticatedSystemAdmin):
 
 
 class TicketView(AuthenticatedSystemAdmin):
-    column_list = ['id', 'active', 'created_date', 'total_price', 'customer_id', 'seat']
+    column_list = ['id', 'active', 'created_date', 'flight_id', 'total_price', 'customer_id', 'seat']
 
 
 class AirSeatClassView(AuthenticatedSystemAdmin):
     column_list = ['id', 'price', 'aircraft', 'seat_class']
 
 
-admin.add_view(FlightRouteView(Route, db.session))
+admin.add_view(RouteView(Route, db.session))
 admin.add_view(AirlineCompanyView(Company, db.session))
 admin.add_view(AirportView(Airport, db.session))
 admin.add_view(SeatClassView(SeatClass, db.session))
