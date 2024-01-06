@@ -39,7 +39,7 @@ body, html {
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    background: url('/static/image/BGLogin.jpg') no-repeat center center fixed;
+    background: url('https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/BGLogin_igncr6.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -118,7 +118,7 @@ footer {
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    background: url('/static/image/BGLogin.jpg') no-repeat center center fixed;
+    background: url('https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/BGLogin_igncr6.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 .header-main {

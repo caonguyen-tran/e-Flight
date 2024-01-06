@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng Ký tài khoản</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký tài khoản</title>
 
-<style>
+    <style>
     *{
         margin: 0;
         padding: 0;
     }
 
     body{
-        background-image: url('/static/image/BGLogin.jpg');
+        background-image: url('https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/BGLogin_igncr6.jpg');
         background-size: cover;
         font-family: 'Roboto', sans-serif;
     }
@@ -61,6 +61,10 @@
         /* background-color: aqua; */
         margin: auto 20px;
         height: 400px;
+    }
+
+    .register-Form div {
+        margin-top: 6px;
     }
 
     .pass-button, .first-last-name, .birtday-gender, .gender, .email-number{
@@ -121,79 +125,77 @@
         margin-top: 30px;
         color: #777;
     }
-</style>
+
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="content">
-            <h2>Đăng ký tài khoản</h2>
-        
-            <form action="/user/register" class="register-Form" method="post">
-                <div class="first-last-name">
-                    <div>
-                        <label for="">First name</label><br>
-                        <input type="text" name="firstname">
-                    </div>
-                    <div>
-                        <label for="">Last name</label><br>
-                        <input type="text" name="lastname">
-                    </div>
+{% if err_msg %}
+<div class="alert alert-danger">
+    {{ err_msg }}
+</div>
+{% endif %}
+<div class="container">
+    <div class="content">
+        <h2>Đăng ký tài khoản</h2>
+
+        <form action="" class="register-Form" method="post" enctype="multipart/form-data">
+            <div class="first-last-name">
+                <div>
+                    <label for="">First name</label><br>
+                    <input type="text" name="firstname">
                 </div>
-                <div class="user-name">
-                    <div>
-                        <label for="">User name</label><br>
-                        <input type="text" name="username">
-                    </div>
+                <div>
+                    <label for="">Last name</label><br>
+                    <input type="text" name="lastname">
                 </div>
-    
-                <div class="birtday-gender">
-                    <div>
-                        <label for="">Birtday</label><br>
-                        <input type="date" name="dateOfBirth">
-                    </div>
-                    <div class="gender">
-                        <p><input type="radio" name="gender" value="Male">Male</p>
-                        <p><input type="radio" name="gender" value="Female">Female</p>
-                    </div>
+            </div>
+            <div class="user-name">
+                <div>
+                    <label for="">User name</label><br>
+                    <input type="text" name="username">
+                </div>
+            </div>
+
+            <div class="birtday-gender">
+                <div>
+                    <label for="">Birtday</label><br>
+                    <input type="date" name="dateOfBirth">
+                </div>
+                <div class="gender">
+                    <p><input type="radio" name="gender" value="Male" checked>Male</p>
+                    <p><input type="radio" name="gender" value="Female">Female</p>
+                </div>
+            </div>
+
+            <div class="email-number">
+                <div>
+                    <label for="">Email</label><br>
+                    <input type="email" name="email">
                 </div>
 
-                <div class="address">
-                    <div>
-                        <label for="">Address</label><br>
-                    <input type="text" name="address">
-                    </div>
+                <div>
+                    <label for="">Phone number</label><br>
+                    <input type="text" name="phone_number">
                 </div>
 
-                <div class="email-number">
-                    <div>
-                        <label for="">Email</label><br>
-                        <input type="email" name="email">
-                    </div>
-
-                    <div>
-                        <label for="">Phone number</label><br>
-                        <input type="text" name="phone_number">
-                    </div>
-                    
+            </div>
+            <div class="pass-button">
+                <div>
+                    <label for="">Password</label><br>
+                    <input type="password" name="password"><br>
+                    <label for="">Password again</label><br>
+                    <input type="password" name="confirm_password">
                 </div>
-                <div class="pass-button">
-                    <div>
-                        <label for="">Password</label><br>
-                        <input type="password" name="password"><br>
-                        <label for="">Password again</label><br>
-                        <input type="password" name="confirm_password">
-                    </div>
-                    <div class="button">
-                        <a href="" type="submit">Đăng ký</a>
-                    </div>
+                <div class="button">
+                    <button type="submit">Dang ky</button>
                 </div>
-                <a href="/" style="color: #777; font-size: 17px; line-height: 30px;">Quay lại</a>
-            </form>
-            
-        </div>
-            
-        <footer>Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM</footer>
+            </div>
+            <a href="/" style="color: #777; font-size: 17px; line-height: 30px;">Quay lại</a>
+        </form>
 
     </div>
+
+    <footer>Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM</footer>
+</div>
 </body>
 </html>

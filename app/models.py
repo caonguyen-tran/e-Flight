@@ -132,10 +132,7 @@ class AirSeatClass(db.Model):
 
 class Seat(BaseModel):
     air_seat_class_id = Column(Integer, ForeignKey(AirSeatClass.id), nullable=False)
-    air_seat_class = relationship('AirSeatClass', backref='seat', lazy=True)
-
-    def __str__(self):
-        return self.id
+    air_seat_class = relationship('AirSeatClass', lazy=True)
 
 
 class Ticket(BaseModel):
@@ -143,8 +140,8 @@ class Ticket(BaseModel):
     customer_id = Column(Integer, ForeignKey(User.id), nullable=False)
     flight_id = Column(Integer, ForeignKey(Flight.id), nullable=False)
     seat_id = Column(Integer, ForeignKey(Seat.id), nullable=False)
-    customer = relationship('User', backref='tickets', lazy=True)
-    seat = relationship('Seat', backref='tickets', lazy=True)
+    customer = relationship('User', lazy=True)
+    seat = relationship('Seat', lazy=True)
 
 
 if __name__ == "__main__":

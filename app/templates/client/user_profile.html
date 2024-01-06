@@ -13,28 +13,24 @@
         
         <table>
             <tr>
-                <th>Số điện thoại:</th>
-                <td>0123456789</td>
-            </tr>
-            <tr>
                 <th>Tên:</th>
-                <td>Nguyễn Văn A</td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td>nguyenvana@example.com</td>
-            </tr>
-            <tr>
-                <th>Ngày sinh:</th>
-                <td>01/01/1990</td>
+                <td>{{current_user.firstname}} {{current_user.lastname}}</td>
             </tr>
             <tr>
                 <th>Giới tính:</th>
-                <td>Nam</td>
+                <td>{{current_user.gender}}</td>
             </tr>
             <tr>
-                <th>Địa chỉ:</th>
-                <td>123 Đường ABC, Quận XYZ, Thành phố HCM</td>
+                <th>Ngày sinh:</th>
+                <td>{{current_user.date_of_birth}}</td>
+            </tr>
+            <tr>
+                <th>Số điện thoại:</th>
+                <td>{{current_user.phone_number}}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>{{current_user.email}}</td>
             </tr>
         </table>
 
@@ -101,8 +97,8 @@
     </div>
     
     <div class="avatar-container avata" id="avatarContainer" onclick="openFileInputForEdit()">
-        <img src="{{ url_for('static', filename='image/avata.png') }}" alt="Avatar của khách hàng" id="avatarImage">
-        <p>Nguyễn Văn A</p>
+        <img src="{{current_user.avatar}}" alt="Avatar của khách hàng" id="avatarImage">
+        <p>{{current_user.firstname}} {{current_user.lastname}}</p>
         <span class="upload-text" id="uploadText" onmouseover="showUploadText()" onmouseout="hideUploadText()" onclick="openFileInputForEdit()">Thay đổi ảnh đại diện</span>
         <input type="file" accept="image/*" class="upload-input" id="fileInputForEdit" onchange="displaySelectedImageForEdit()">
     </div>
@@ -118,17 +114,13 @@
                 </div>
     
                 <div class="avatar-container" id="editedAvatarContainer">
-                    <img src="{{ url_for('static', filename='image/avata.png') }}" alt="Avatar của khách hàng" id="editedAvatarImage" style="width: 100px; height: 100px; margin: auto; padding: 0;">
+                    <img src="{{current_user.avatar}}" alt="Avatar của khách hàng" id="editedAvatarImage" style="width: 100px; height: 100px; margin: auto; padding: 0;">
                     <span class="upload-text" id="editedUploadText" onmouseover="showUploadTextForEdit()" onmouseout="hideUploadTextForEdit()" onclick="openFileInputForEdit()">Thay đổi ảnh đại diện</span>
                 </div>
 
                 <div class="form-group">
                     <label for="editName">Tên:</label>
                     <input type="text" id="editName" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="editEmail">Email:</label>
-                    <input type="email" id="editEmail" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="editDOB">Ngày sinh:</label>
@@ -143,10 +135,14 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="editAddress">Địa chỉ:</label>
-                    <input type="text" id="editAddress" name="address" required>
+                    <label for="editEmail">Email:</label>
+                    <input type="email" id="editEmail" name="email" required>
                 </div>
-                
+
+                <div class="form-group">
+                    <label for="editPhone">Số điện thoại: </label>
+                    <input type="text" id="editPhone" name="phone" required>
+                </div>
                 <button type="button" onclick="saveChanges()" class="form-group-button">Lưu thay đổi</button>
                 <button type="button" onclick="closeEditModal()" class="form-group-button">Hủy</button>
             </form>

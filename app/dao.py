@@ -5,6 +5,7 @@ from sqlalchemy import func
 from datetime import datetime
 import locale
 from flask import jsonify
+import cloudinary.uploader
 
 locale.setlocale(locale.LC_ALL, 'vi_VN')
 
@@ -77,4 +78,11 @@ def format_date(date):
     date_obj = datetime.strptime(date, '%Y-%m-%d')
     day_of_week = date_obj.strftime('%A')
     date_format = str(date).split('-')
-    return day_of_week + "," + date_format[2] + " Tháng " + date_format[1] +" "+ date_format[0]
+    return day_of_week + "," + date_format[2] + " Tháng " + date_format[1] + " " + date_format[0]
+
+
+def add_user(firstname, lastname, username, pw, gender, date_of_birth, email, phone_number):
+    u = User(firstname=firstname, lastname=lastname, username=username, password=pw, gender=gender,
+             date_of_birth=date_of_birth, email=email, phone_number=phone_number)
+    db.session.add(u)
+    db.session.commit()

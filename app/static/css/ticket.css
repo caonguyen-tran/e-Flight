@@ -9,7 +9,7 @@
 body{
     background-blend-mode: color-burn;
     background-color: rgba(255, 255, 255, 0.8);
-    background-image: url('/static/image/BGLogin.jpg');
+    background-image: url('https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/BGLogin_igncr6.jpg');
     background-size: cover;
 }
 

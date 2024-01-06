@@ -1,189 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng nhập hệ thống POS</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập hệ thống POS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
-<!-- font -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-<script src="https://kit.fontawesome.com/dd307a4d09.js" crossorigin="anonymous"></script>
+    <!-- font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="https://kit.fontawesome.com/dd307a4d09.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
-    <div class="main-container">
-        <div class="header-main">
-            <h1>Hello Employee</h1>
-        </div>
-        <!-- Các nút ở phía trên cùng của trang -->
-        <div class="tab-control-main">
-            <button class="tablink" onclick="openTab(event, 'Search')">Tìm kiếm chuyến</button>
-            <button class="tablink" onclick="openTab(event, 'CreateFlight')">Tạo chuyến bay</button>
-        </div>
-        <!-- MAIN CHỨC NĂNG TÌM KIẾM CHUYẾN BAY -->
-        <div id="Search" class="search-main tabcontent">
-
-            <div class="from-to-seat">
-                <!-- điểm đi -->
-                <div class="select-costom">
-                    <label class="from-to-seat-label" for="from">From</label><br>
-                    <div>
-                        <i class="fa-solid fa-plane-departure icon-costom"></i>
-                        <select class="select-costom-chose"  name="from">
-                            <option value="HCM">TP HCM</option>
-                            <option value="HCM">TP HCM</option>
-                            <option value="HCM">TP HCM</option>
-                        </select>
-                    </div>
-                </div>
-
-                <i class="fa-solid fa-plane"></i>
-                <!-- điểm đến -->
-                <div class="select-costom">
-                    <label   class="from-to-seat-label" for="to">To</label><br>
-                    <div >
-                        <i class="fa-solid fa-plane-arrival"></i>
-                        <select class="select-costom-chose" name="to">
-                            <option value="HCM">TP HCM</option>
-                            <option value="HCM">TP HCM</option>
-                            <option value="HCM">TP HCM</option>
-                        </select>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="costome-date-seat-button">
-                <div class="item">
-                    <label for="">Chọn Ngày:</label><br>
-                    <input type="date">
-                </div>
-
-                <div class="item">
-                    <label for="">Chọn ghế:</label><br>
-                    <select name="" id="">
-                        <option value="">ádasd</option>
-                    </select>
-                </div>
-
-                <div class="item">
-                    <label for="">Nhập số lượng:</label><br>
-                    <input type="number" name="" id="" min="1" value="1">
-                </div>
-
-                <div class="find-from">
-                    <button class="btn-find">Tìm chuyến bay</button>
-                </div>
-            </div>
-            <div class="list">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Mã chuyến bay</th>
-                            <th>Hãng bay</th>
-                            <th>Trạng thái ghế</th>
-                            <th>Giá vé</th>
-                            <th>Chọn</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>CB001</td>
-                            <td>VN Airlines</td>
-                            <td>Đang còn vé</td>
-                            <td>1,000,000 VND</td>
-                            <td><button>Chọn</button></td>
-                        </tr>
-                        <!-- Thêm các dòng dữ liệu khác tương tự ở đây -->
-                    </tbody>
-                </table>
-            </div>
-           
-        </div>
-        <!-- MAIN CHỨC NĂNG LẬP LỊCH CHUYẾN BAY -->
-        <div id="CreateFlight" class="search-main tabcontent">
-
-            <div class="from-select-route width-90-mg-auto">
-                <label class="font-lb-18" for="route">Chọn tuyến:</label>
-                <select  style="font-size: 16px;"class=" select-route-option"  id="route" name="route">
-                    <option value="">Tân Sơn Nhất - Cam Ranh</option>
-                    <option value="">HCM - HN</option>
-                    <option value="">Tân Sơn Nhất - Cam Ranh</option>
-                    <!-- Thêm các tuyến khác vào đây -->
-                </select>
-            </div>             
-            <div class="fight-control width-90-mg-auto font-lb-18">
-                <div>
-                    <label for="aircraft">Chọn máy bay:</label>
-                    <select id="aircraft" name="aircraft">
-                        <option value="airbusA320">Airbus A320</option>
-                        <option value="airbusA320">Airbus A320</option>
-                        <option value="airbusA320">Airbus A320</option>
-                        <!-- Thêm các loại máy bay khác vào đây -->
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="date">Ngày bay:</label>
-                    <input type="date" id="date" name="date">  
-                </div>
-                <div>
-                    <label for="time">Giờ bay:</label>
-                    <input type="time" id="time" name="time">       
-                </div>
-
-               
-
-            </div>
-            
-            <div class="from-seeting-seat">
-                <div>
-                    <label for="price1">Nhập giá vé hạng 1:</label>
-                    <input  placeholder="0" type="text" id="price1" name="price1">
-
-                </div>
-                <div>
-                    <label for="price2">Nhập giá vé hạng 2:</label>
-                    <input placeholder="0" type="text" id="price2" name="price2">
-                </div>
-                <div>
-                    <label for="price3">Nhập giá vé hạng 3:</label>
-                    <input placeholder="0" type="text" id="price3" name="price3">
-                </div>
-                <div>
-                    <label for="price4">Nhập giá vé hạng 4:</label>
-                    <input placeholder="0" type="text" id="price4" name="price4">
-                </div>
-
-
-                
-            </div>
-            <div class="from-intermediate-airport font-lb-18">
-                <label for="">Sân bay trung gian:</label>
-                <select id="" name="">
-                    <option value="Không có">Không có</option>
-                    <option value="HCM">HCM</option>
-                    <option value="Hue">Huế</option>
-                    
-                </select>
-            </div>
-            
-            <div class="create-fight-from">
-                <button class=" btn-create-fight">Tạo</button>
-            </div>
-           
-        </div>
-        <footer>
-            Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM
-        </footer>
-        
+<div class="main-container">
+    <div class="header-main">
+        <h1>Xin chào {{current_user.username}}</h1>
     </div>
+    <!-- Các nút ở phía trên cùng của trang -->
+    <div class="tab-control-main">
+        <button class="tablink" onclick="openTab(event, 'Search')">Tìm kiếm chuyến</button>
+        <button class="tablink" onclick="openTab(event, 'CreateFlight')">Tạo chuyến bay</button>
+    </div>
+    <!-- MAIN CHỨC NĂNG TÌM KIẾM CHUYẾN BAY -->
+    <div id="Search" class="search-main tabcontent">
+
+        <div class="from-to-seat">
+            <!-- điểm đi -->
+            <div class="select-costom">
+                <label class="from-to-seat-label" for="from">From</label><br>
+                <div>
+                    <i class="fa-solid fa-plane-departure icon-costom"></i>
+                    <select class="select-costom-chose" name="from">
+                        {%for airport in airports%}
+                        <option value="{{airport.id}}">{{airport.locate}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+
+            <i class="fa-solid fa-plane"></i>
+            <!-- điểm đến -->
+            <div class="select-costom">
+                <label class="from-to-seat-label" for="to">To</label><br>
+                <div>
+                    <i class="fa-solid fa-plane-arrival"></i>
+                    <select class="select-costom-chose" name="to">
+                        {%for airport in airports%}
+                        <option value="{{airport.id}}">{{airport.locate}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="costome-date-seat-button">
+            <div class="item">
+                <label for="">Chọn Ngày:</label><br>
+                <input name="dt" type="date" id="departure_date">
+            </div>
+
+            <div class="item">
+                <label for="">Chọn ghế:</label><br>
+                <select name="sc">
+                    {%for sc in seat_classes%}
+                    <option value="{{sc.id}}">{{sc.name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="item">
+                <label for="">Nhập số lượng:</label><br>
+                <input type="number" name="" min="1" value="1">
+            </div>
+
+            <div class="find-from">
+                <button type="submit" class="btn-find">Tìm chuyến bay</button>
+            </div>
+        </div>
+        <div class="list">
+            <table>
+                <thead>
+                <tr>
+                    <th>Mã chuyến bay</th>
+                    <th>Tuyến bay</th>
+                    <th>Máy bay</th>
+                    <th>Hãng</th>
+                    <th>Hạng ghế</th>
+                    <th>Giá vé</th>
+                    <th>Chọn</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for flight in flights%}
+                <tr>
+                    <td>{{flight.id}}</td>
+                    <td>{{route_name}}</td>
+                    <td>{{flight.aircraft_id}}</td>
+                    <td>{{flight.company_name}}</td>
+                    <td>{{flight.seat_class}}</td>
+                    <td>{{flight.price}}</td>
+                    <td>
+                        <button>Chọn</button>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- Thêm các dòng dữ liệu khác tương tự ở đây -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- MAIN CHỨC NĂNG LẬP LỊCH CHUYẾN BAY -->
+    <div id="CreateFlight" class="search-main tabcontent">
+
+        <div class="from-select-route width-90-mg-auto">
+            <label class="font-lb-18" for="route">Chọn tuyến:</label>
+            <select style="font-size: 16px;" class=" select-route-option" id="route" name="route">
+                <option value="">Tân Sơn Nhất - Cam Ranh</option>
+                <option value="">HCM - HN</option>
+                <option value="">Tân Sơn Nhất - Cam Ranh</option>
+                <!-- Thêm các tuyến khác vào đây -->
+            </select>
+        </div>
+        <div class="fight-control width-90-mg-auto font-lb-18">
+            <div>
+                <label for="aircraft">Chọn máy bay:</label>
+                <select id="aircraft" name="aircraft">
+                    <option value="airbusA320">Airbus A320</option>
+                    <option value="airbusA320">Airbus A320</option>
+                    <option value="airbusA320">Airbus A320</option>
+                    <!-- Thêm các loại máy bay khác vào đây -->
+                </select>
+            </div>
+
+            <div>
+                <label for="date">Ngày bay:</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div>
+                <label for="time">Giờ bay:</label>
+                <input type="time" id="time" name="time">
+            </div>
+
+
+        </div>
+
+        <div class="from-seeting-seat">
+            <div>
+                <label for="price1">Nhập giá vé hạng 1:</label>
+                <input placeholder="0" type="text" id="price1" name="price1">
+
+            </div>
+            <div>
+                <label for="price2">Nhập giá vé hạng 2:</label>
+                <input placeholder="0" type="text" id="price2" name="price2">
+            </div>
+            <div>
+                <label for="price3">Nhập giá vé hạng 3:</label>
+                <input placeholder="0" type="text" id="price3" name="price3">
+            </div>
+            <div>
+                <label for="price4">Nhập giá vé hạng 4:</label>
+                <input placeholder="0" type="text" id="price4" name="price4">
+            </div>
+
+
+        </div>
+        <div class="from-intermediate-airport font-lb-18">
+            <label for="">Sân bay trung gian:</label>
+            <select id="" name="">
+                <option value="Không có">Không có</option>
+                <option value="HCM">HCM</option>
+                <option value="Hue">Huế</option>
+
+            </select>
+        </div>
+
+        <div class="create-fight-from">
+            <button class=" btn-create-fight">Tạo</button>
+        </div>
+
+    </div>
+    <footer>
+        Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM
+    </footer>
+
+</div>
 <script src="main.js"></script>
 <script>
     // Hàm để mở một tab nội dung cụ thể
@@ -211,6 +217,23 @@
     // Lấy phần tử với id="defaultOpen" và click vào nó
     // Điều này sẽ mở tab đầu tiên mặc định
     document.getElementsByClassName("tablink")[0].click();
-    </script>
+
+    document.getElementById('departure_date').valueAsDate = new Date()
+
+    function checkAirport(){
+        locate_from = document.getElementById('airport-from').value
+        locate_to = document.getElementById('airport-to').value
+        console.log(locate_from, locate_to)
+        if(locate_from == locate_to){
+            alert('Vui long nhap dung diem den va diem di')
+        }
+        else{
+            document.getElementById('flight-form').submit()
+        }
+    }
+
+
+
+</script>
 </body>
 </html>

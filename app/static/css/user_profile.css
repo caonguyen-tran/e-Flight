@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 body {
     font-family: Arial, sans-serif;
-    background-image: url('/static/image/BGLogin.jpg');
+    background-image: url('https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/BGLogin_igncr6.jpg');
     background-size: cover;
 }
 

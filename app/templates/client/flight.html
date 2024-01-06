@@ -121,11 +121,12 @@
                 <div class="info">
                     <p>Mã máy bay: {{flight.aircraft_name}}</p>
                     <p>Trạng thái: Còn chỗ</p>
-                    <p>Điểm dừng chân: SB1, Sb2</p>
+                    <p>Hạng: {{flight.seat_class}}</p>
                 </div>
                 <h2>{{flight.departure_time.day}}/{{flight.departure_time.month}}/{{flight.departure_time.year}}</h2>
                 <h3>{{flight.departure_time.hour}}:{{flight.departure_time.minute}}</h3>
-                <button>Chọn</button>
+                <button onclick="addFlightToCart({{flight.id}},{{flight.company_name}}, {{flight.aircraft_name}},{{flight.aircraft_id}},
+                 {{flight.seat_class}}, {{flight.departure_time}}, {{flight.price}})">Chọn</button>
             </div>
         </div>
         {%endfor%}
