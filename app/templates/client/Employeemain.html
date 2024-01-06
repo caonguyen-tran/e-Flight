@@ -27,60 +27,61 @@
     </div>
     <!-- MAIN CHỨC NĂNG TÌM KIẾM CHUYẾN BAY -->
     <div id="Search" class="search-main tabcontent">
+        <form action="/employee/search_flights" method="get">
+            <div class="from-to-seat">
+                <!-- điểm đi -->
+                <div class="select-costom">
+                    <label class="from-to-seat-label" for="from">From</label><br>
+                    <div>
+                        <i class="fa-solid fa-plane-departure icon-costom"></i>
+                        <select class="select-costom-chose" name="from">
+                            {%for airport in airports%}
+                            <option value="{{airport.id}}">{{airport.locate}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
+                </div>
 
-        <div class="from-to-seat">
-            <!-- điểm đi -->
-            <div class="select-costom">
-                <label class="from-to-seat-label" for="from">From</label><br>
-                <div>
-                    <i class="fa-solid fa-plane-departure icon-costom"></i>
-                    <select class="select-costom-chose" name="from">
-                        {%for airport in airports%}
-                        <option value="{{airport.id}}">{{airport.locate}}</option>
-                        {%endfor%}
-                    </select>
+                <i class="fa-solid fa-plane"></i>
+                <!-- điểm đến -->
+                <div class="select-costom">
+                    <label class="from-to-seat-label" for="to">To</label><br>
+                    <div>
+                        <i class="fa-solid fa-plane-arrival"></i>
+                        <select class="select-costom-chose" name="to">
+                            {%for airport in airports%}
+                            <option value="{{airport.id}}">{{airport.locate}}</option>
+                            {%endfor%}
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <i class="fa-solid fa-plane"></i>
-            <!-- điểm đến -->
-            <div class="select-costom">
-                <label class="from-to-seat-label" for="to">To</label><br>
-                <div>
-                    <i class="fa-solid fa-plane-arrival"></i>
-                    <select class="select-costom-chose" name="to">
-                        {%for airport in airports%}
-                        <option value="{{airport.id}}">{{airport.locate}}</option>
+            <div class="costome-date-seat-button">
+                <div class="item">
+                    <label for="">Chọn Ngày:</label><br>
+                    <input name="dt" type="date" id="departure_date">
+                </div>
+
+                <div class="item">
+                    <label for="">Chọn ghế:</label><br>
+                    <select name="sc">
+                        {%for sc in seat_classes%}
+                        <option value="{{sc.id}}">{{sc.name}}</option>
                         {%endfor%}
                     </select>
                 </div>
-            </div>
-        </div>
 
-        <div class="costome-date-seat-button">
-            <div class="item">
-                <label for="">Chọn Ngày:</label><br>
-                <input name="dt" type="date" id="departure_date">
-            </div>
+                <div class="item">
+                    <label for="">Nhập số lượng:</label><br>
+                    <input type="number" name="" min="1" value="1">
+                </div>
 
-            <div class="item">
-                <label for="">Chọn ghế:</label><br>
-                <select name="sc">
-                    {%for sc in seat_classes%}
-                    <option value="{{sc.id}}">{{sc.name}}</option>
-                    {%endfor%}
-                </select>
+                <div class="find-from">
+                    <button type="submit" class="btn-find">Tìm chuyến bay</button>
+                </div>
             </div>
-
-            <div class="item">
-                <label for="">Nhập số lượng:</label><br>
-                <input type="number" name="" min="1" value="1">
-            </div>
-
-            <div class="find-from">
-                <button type="submit" class="btn-find">Tìm chuyến bay</button>
-            </div>
-        </div>
+        </form>
         <div class="list">
             <table>
                 <thead>
@@ -99,7 +100,7 @@
                 <tr>
                     <td>{{flight.id}}</td>
                     <td>{{route_name}}</td>
-                    <td>{{flight.aircraft_id}}</td>
+                    <td>{{flight.aircraft_name}}</td>
                     <td>{{flight.company_name}}</td>
                     <td>{{flight.seat_class}}</td>
                     <td>{{flight.price}}</td>
@@ -231,6 +232,7 @@
             document.getElementById('flight-form').submit()
         }
     }
+
 
 
 

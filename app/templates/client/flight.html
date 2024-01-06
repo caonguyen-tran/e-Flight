@@ -121,12 +121,15 @@
                 <div class="info">
                     <p>Mã máy bay: {{flight.aircraft_name}}</p>
                     <p>Trạng thái: Còn chỗ</p>
-                    <p>Hạng: {{flight.seat_class}}</p>
+                    <p>Hạng: {{flight.seat_class_name}}</p>
                 </div>
                 <h2>{{flight.departure_time.day}}/{{flight.departure_time.month}}/{{flight.departure_time.year}}</h2>
                 <h3>{{flight.departure_time.hour}}:{{flight.departure_time.minute}}</h3>
-                <button onclick="addFlightToCart({{flight.id}},{{flight.company_name}}, {{flight.aircraft_name}},{{flight.aircraft_id}},
-                 {{flight.seat_class}}, {{flight.departure_time}}, {{flight.price}})">Chọn</button>
+                <button onclick="addFlightToCart({{flight.id}},'{{flight.company_name}}',
+                '{{route_name}}', '{{flight.aircraft_name}}',{{flight.aircraft_id}},{{flight.seat_class_id}},
+                 '{{flight.seat_class_name}}', '{{flight.departure_time}}', {{flight.price}}, '{{flight.company_logo}}')">
+                    Chọn
+                </button>
             </div>
         </div>
         {%endfor%}
@@ -135,38 +138,23 @@
     <div class="columnSeparator"></div>
 
     <div class="oder-ticket">
-        <h3>Thông tin đặt chổ</h3>
+        <h3>Thông tin đặt chỗ</h3>
         <h4>{{route_name}}</h4>
-        <p>thông tin đặt vé</p>
+        <p>Thông tin đặt vé</p>
         <hr>
-        <div>
-            <label for="">Hạng vé:</label>
-            <select name="type-seat" id="seat">
-                <option value="">test</option>
-            </select>
+        <div id="parentDiv">
         </div>
-
-        <div>
-            <label for="">Giá vé:</label>
-            <p>1.000.000.000 VND</p>
-        </div>
-
-        <div>
-            <label for="">Số lượng người:</label>
-            <input type="number" value="1" min="1">
-        </div>
-
-        <div class="costom-total">
+        <div class="costom-total-ticket">
             <label for="Total-price">Tổng tiền:</label>
             <p>2.000.000 VND</p>
         </div>
-
         <hr>
-
-        <button>Đặt vé</button>
+        <div class="">
+            <button class="">Đặt vé</button>
+        </div>
     </div>
 </div>
-
+<script src="{{url_for('static', filename='javascript/flight.js')}}"></script>
 <script>
     // Lấy đối tượng canvas
     var canvas = document.getElementById("myCanvas");
@@ -225,8 +213,6 @@
       behavior: "smooth" // Cuộn mượt nếu trình duyệt hỗ trợ
     });
   }
-
-
 
 
 </script>

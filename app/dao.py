@@ -64,7 +64,8 @@ def get_flights(locate_from, locate_to, date, seat_class):
             'departure_time': flight.Flight.departure_time,
             'aircraft_name': flight.Aircraft.name,
             'price': flight.AirSeatClass.price,
-            'seat_class': flight.SeatClass.name,
+            'seat_class_id': flight.SeatClass.id,
+            'seat_class_name': flight.SeatClass.name,
             'name_route': flight.Route.name,
             'aircraft_id': flight.Aircraft.id,
             'company_name': flight.Company.name,
@@ -86,3 +87,4 @@ def add_user(firstname, lastname, username, pw, gender, date_of_birth, email, ph
              date_of_birth=date_of_birth, email=email, phone_number=phone_number)
     db.session.add(u)
     db.session.commit()
+

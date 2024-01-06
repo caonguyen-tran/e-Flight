@@ -1,9 +1,8 @@
 from app import app, login
-from flask import redirect, render_template, request, jsonify
-import dao
+from flask import redirect, render_template, request, jsonify, session
+import dao, utils
 from flask_login import login_user, logout_user, current_user
 from app.models import User, Role
-from datetime import datetime
 
 
 @app.route('/', methods=['get'])
@@ -19,7 +18,7 @@ def flight_search():
     dt = request.args.get('dt')
     flights = dao.get_flights(locate_from, locate_to, dt, sc)
     route_name = dao.get_route_name(locate_from, locate_to).name
-    date_format = dao.format_date(dt)
+    date_format = utils.format_date(dt)
     return render_template('client/flight.html', flights=flights, route_name=route_name, date_format=date_format)
 
 
@@ -127,6 +126,52 @@ def employee_search():
     flights = dao.get_flights(locate_from, locate_to, dt, sc)
     route_name = dao.get_route_name(locate_from, locate_to).name
     return render_template('client/Employeemain.html', flights=flights, route_name=route_name)
+
+
+@app.route('/api/add_cart', methods=['post'])
+def add_to_cart():
+    data = request.json
+
+    tickets = session.get('tickets')
+
+    if tickets is None:
+        tickets = {}
+
+    id = str(data.get('id'))
+    sc_id = str(data.get('seat_class_id'))
+    if id in tickets:
+        if sc_id in tickets[id]['seat_class']:
+            tickets[id]['seat_class'][sc_id]['quantity'] += 1
+        else:
+            tickets[id]['seat_class'][sc_id] = {
+                    'seat_class_name': data.get('seat_class_name'),
+                    'price': data.get('price'),
+                    'quantity': 1
+                }
+    else:
+        tickets[id] = {
+            'id': id,
+            'aircraft_id': data.get('aircraft_id'),
+            'aircraft_name': data.get('aircraft_name'),
+            'route_name': data.get('route_name'),
+            'company_name': data.get('company_name'),
+            'departure_time': data.get('departure_time'),
+            'company_logo': data.get('company_logo'),
+            'seat_class': {
+                sc_id: {
+                    'seat_class_name': data.get('seat_class_name'),
+                    'price': data.get('price'),
+                    'quantity': 1
+                }
+            }
+        }
+
+    session['tickets'] = tickets
+
+    return jsonify({
+        'tickets': tickets,
+        'total_cost': utils.total_cost(tickets)
+    })
 
 
 @login.user_loader
