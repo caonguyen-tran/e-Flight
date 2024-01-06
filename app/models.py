@@ -1,4 +1,5 @@
-from sqlalchemy import Integer, String, Float, DateTime, Column, Boolean, Enum, ForeignKey, UniqueConstraint, event
+from sqlalchemy import Integer, String, Float, DateTime, Column, Boolean, Enum, ForeignKey, UniqueConstraint, event, \
+    Date
 from sqlalchemy.orm import relationship
 import enum
 from app import db
@@ -20,7 +21,9 @@ class User(db.Model, UserMixin):
     username = Column(String(50), nullable=False, unique=True)
     password = Column(String(100), nullable=False)
     gender = Column(String(20), nullable=False)
-    date_of_birth = Column(DateTime, default=datetime.now())
+    date_of_birth = Column(Date, default=datetime.now())
+    email = Column(String(30), nullable=False, unique=True)
+    phone_number = Column(String(20), nullable=False, unique=True)
     avatar = Column(String(100),
                     default='https://res.cloudinary.com/dndakokcz/image/upload/v1704201170/default-user-avatar_fegu5k.webp')
     user_role = Column(Enum(Role), default=Role.USER)

@@ -1,12 +1,10 @@
-body{
+body, html {
     height: 100%;
     margin: 0;
     font-family:'Roboto', sans-serif;
     color: #000;
-    background-image: url('/static/image/BGLogin.jpg');
-    background-size: cover;
+    
 }
-
 
 /* TAB CONTROL */
 .tab-control-main{
@@ -24,6 +22,7 @@ body{
   .tablink {
     cursor: pointer;
     width: 30%;
+    height: 40px;
   }
   
   /* Định dạng cho nút đang hoạt động */
@@ -40,7 +39,8 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    
+    background: url('/static/image/BGLogin.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 .login-content {
@@ -70,13 +70,13 @@ body{
     outline: 1px solid  #049afe;;
 
 }
-/* .text-forgot{
+.text-forgot{
     font-size: 13px;
     padding-top: 10px;
     padding-right: 2px;
     text-align: right;
     color: #000000 !important;
-} */
+}
 
 
 
@@ -118,11 +118,12 @@ footer {
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    background: url('/img/BGLogin.jpg') no-repeat center center fixed;
+    background: url('/static/image/BGLogin.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 .header-main {
     text-align: center;
+    line-height: 0px;
 }
 
 .navigation-main {
@@ -133,11 +134,10 @@ footer {
 .search-main {
     border-radius: 20px;
     border: none;
-    margin: 0% 5% 0% 5%  ;
-    height: auto;
-    padding: 20px;
     width: 80%;
     background: rgba(255, 255, 255, 0.8);
+    height: 600px;
+    position: relative;
 }
 
 .search-main label {
@@ -149,6 +149,34 @@ footer {
 .search-section input[type="date"],
 .search-section input[type="number"] {
     margin-bottom: 10px;
+}
+
+.costome-date-seat-button{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 5px auto;
+}
+
+
+
+
+
+.item input, .item select{
+    width: 250px;
+    height: 40px;
+    border: solid 2px #0094FF;
+    border-radius: 5px;
+    padding: 0px 5px;
+    font-size: 20px;
+
+}
+
+.item select{
+    font-size: 20px;
+    height: 40px;
+    padding: 5px;
 }
 
 .passenger {
@@ -212,7 +240,6 @@ footer {
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    padding: 20px 0px 20px 0px  
 }
 .select-costom div{
     width: auto;
@@ -246,7 +273,7 @@ footer {
     line-height: 45px;
 }
 
-.fa-right-left{
+.fa-plane{
     color:  #2da9fc;
     font-size: 40px;
     margin-top: 20px;
@@ -291,7 +318,6 @@ footer {
 }
 .passenger-quantity-from-control{
     width: 90%;
-    display: flex;
     margin: auto;
     position: relative;
     padding: 40px 0px 20px 0px ;
@@ -306,6 +332,13 @@ footer {
     position: absolute;
     left: 0px;
 }
+
+.passenger-quantity-from-control input[type='number']{
+    position: absolute;
+
+}
+
+
 .passenger-quantity{
     position: absolute;
     display: flex;
@@ -338,18 +371,15 @@ footer {
 }
 
 .find-from{
-    width: 90%;
-    margin: auto;
-    display: flex;
-    justify-content: right;
-    padding: 20px 0px 20px 0px;
+    bottom: 0px;
 }
+
 .btn-find{
     right: 20px;
     width: 200px;
-    height: 60px;
+    height: 43px;
     font-size: 18px;
-
+    outline: solid 1px #049afe;
 }
 .select-route-option{
     line-height: 20px;
@@ -446,4 +476,119 @@ body:focus{
     font-size: 18px;
 }
 
+/* VÉ    */
+
+.label-ticket{
+    width: 80%;
+    max-width: 850px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    background-color: #cce2f6;
+    border-radius: 20px 20px 0px 0px;
+    padding: 5px 10px 0px 10px;
+
+}
+.label-ou{
+    position: relative;
+    width: 148px;
+}
+.label-ou-logo{
+    position: absolute;
+    height: 40px;
+    width: auto;
+    top:1px
+}
+.label-ou-name{
+    color: #03385d;
+    right: 0px;
+    position: absolute;
+    top: 10px;
+    width: 110px;
+    font-weight: bold;
+}
+.label-type-ticket{
+    color: #01416e;
+    line-height: 40px;
+    margin: auto;
+    
+}
+
+
+/* INFOR TICKET */
+.info-ticket {
+    width: 80%;
+    max-width: 850px;
+    height: auto;
+    background-color: #fcfcfc;
+    padding: 5px 10px 0px 10px;
+    display: flex;
+}
+.ticket-detail{
+    flex: 1;
+}
+.ticket-detail-info-title{
+    color: #666565;
+    font-size:10px;
+    margin-bottom: 5px;
+}
+.ticket-detail-info-1{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 20px 15px 20px ;
+
+}
+.ticket-detail-info-qr{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 1px solid var(--border-color);
+    margin: auto;
+}
+.ticket-detail-info-qr{
+    display: flex;
+    margin: 0px 6px 0px 20px;
+}
+.ticket-detail-info-qr-lb{
+    margin: 20px 20px 20px 0px;
+}
+.border-left-dashed {
+    border-left: 1px dashed black; /* Đặt viền trái là gạch đứt màu đen với độ dày 2px */
+}
+/* footer ticket */
+.footer-ticket{
+    width: 80%;
+    max-width: 850px;
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    background-color: #cce2f6;
+    border-radius:  0px 0px 20px 20px;
+    padding: 5px 10px 0px 10px;
+}
+.footer-ou{
+    position: relative;
+    width: 148px;
+}
+.footer-ou-logo{
+    position: absolute;
+    height: 30px;
+    width: auto;
+    top:1px
+}
+.footer-ou-name{
+    color: #03385d;
+    right: 8px;
+    position: absolute;
+    top: 7px;
+    width: 110px;
+    font-weight: bold;
+    font-size: 13px;
+}
+.footer-type-ticket{
+    color: #01416e;
+    line-height: 30px;
+    margin: auto;
+    
+}
 

@@ -1,0 +1,12 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+
+{% if current_user.is_authenticated %}
+<h1 class="text-center text-info">CHÀO MỪNG ĐẾN TRANG THỐNG KÊ</h1>
+<h2 class="text-info">Chào {{ current_user.username }}!</h2>
+{% else %}
+<h1>Khong co phan su </h1>
+{% endif %}
+{% endblock %}

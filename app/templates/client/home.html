@@ -19,14 +19,14 @@
         </div>
 
         <div class="form-input-search">
-            <form action="/flights" method="get">
+            <form id="flight-form" action="/flights" method="get">
                 <div class="from-to-seat">
                     <!-- điểm đi -->
                     <div class="select-costom">
                         <label for="from">From</label><br>
                         <div>
                             <i class="fa-solid fa-plane-departure icon-costom"></i>
-                            <select name="from">
+                            <select id="airport-from" name="from">
                                 {%for airport in airports%}
                                 <option value="{{airport.id}}">{{airport.locate}}</option>
                                 {%endfor%}
@@ -40,7 +40,7 @@
                         <label for="to">To</label><br>
                         <div>
                             <i class="fa-solid fa-plane-arrival"></i>
-                            <select name="to">
+                            <select id="airport-to" name="to">
                                 {%for airport in airports%}
                                 <option value="{{airport.id}}">{{airport.locate}}</option>
                                 {%endfor%}
@@ -67,7 +67,7 @@
                     <div>
                         <label for="depart">Ngày đi</label><br>
                         <div class="custom-date-input-container">
-                            <input type="date" name="dt">
+                            <input id="departure_date" type="date" name="dt">
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit">tim chuyen</button>
+                    <button type="button" onclick="checkAirport()">tim chuyen</button>
                 </div>
             </form>
         </div>
@@ -155,4 +155,20 @@
     </div>
 
 </div>
+<script>
+    document.getElementById('departure_date').valueAsDate = new Date()
+
+    function checkAirport(){
+        locate_from = document.getElementById('airport-from').value
+        locate_to = document.getElementById('airport-to').value
+        console.log(locate_from, locate_to)
+        if(locate_from == locate_to){
+            alert('Vui long nhap dung diem den va diem di')
+        }
+        else{
+            document.getElementById('flight-form').submit()
+        }
+    }
+</script>
 {% endblock %}
+

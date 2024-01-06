@@ -1,8 +1,20 @@
+
+button:hover {
+    background-color: #049afe;
+}
 a {
     color: #007bff;
     text-decoration: none;
 }
 
+button {
+    padding: 10px;
+    background-color: #2da9fc;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
 .margin-l-20{
     margin-left: 20px;
 }
@@ -26,31 +38,55 @@ input:focus{
     outline: none;
 }
 
-.custome-buttons{
-    display: flex;
-    justify-content: space-around;
-}
-
-.custome-buttons a{
-    background-color: #007bff;
-    width: 130px;
-    height: 40px;
-    font-size: 19px;
-    line-height: 40px;
-    color: white;
+.list{
+    width: 95%;
+    height: 420px;
+    margin: auto;
     border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: auto;
+    border: solid 2px gray;
 }
 
-.custome-buttons a:hover{
-    background-color: #2da9fc;
+thead th{
+    position: sticky;
+    top: 0;
 }
 
-.input-group input{
-    font-size: 18px;
+
+table{
+    /* height: 300px; */
+    border-collapse: collapse;
 }
 
-.login-content{
-    height: 230px;
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
 
-/* /phần đăng ký tài khoản người dùng/ */
+th, td {
+    /* border: 2px solid #828282; */
+    padding: 8px;
+    text-align: center;
+    border: none;
+}
+
+tr{
+    border-bottom: solid 1px gray;
+}
+
+th {
+    background-color: #afafaf;
+}
+
+tbody{
+    background-color: gainsboro;
+}
+
+button {
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

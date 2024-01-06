@@ -13,23 +13,23 @@
         <form action="#">
             <div class="costome-select-flight">
                 <label for="">From:</label>
-                <select name="from" id="select-flight">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
+                <select name="from">
+                    {%for airport in airports%}
+                    <option value="{{airport.id}}">{{airport.locate}}</option>
+                    {%endfor%}
                 </select>
                 <label for="">To:</label>
-                <select name="from" id="select-flight">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
+                <select name="to">
+                    {%for airport in airports%}
+                    <option value="{{airport.id}}">{{airport.locate}}</option>
+                    {%endfor%}
                 </select>
             </div>
 
             <div class="costome_count_ticket">
                 <div class="costome_items">
                     <label for="">Chọn ngày đi:</label>
-                    <input type="date">
+                    <input type="date" name="dt">
                 </div>
             </div>
 
@@ -41,17 +41,17 @@
 
                 <div class="costome_items">
                     <label for="">Chọn hạng vé</label>
-                    <select name="from" id="select-flight">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
+                    <select name="sc">
+                        {%for seat_class in seat_classes%}
+                        <option value="{{seat_class.id}}">{{seat_class.name}}</option>
+                        {%endfor%}
                     </select>
                 </div>
             </div>
 
             <div>
-                <button id="hideButton" href="">Hủy</button>
-                <a href="" type="summit">Tìm chuyến bay</a>
+                <a href="" id="hideButton">Huy</a>
+                <button type="submit"> Tim chuyen bay</button>
             </div>
         </form>
 
@@ -224,6 +224,9 @@
       behavior: "smooth" // Cuộn mượt nếu trình duyệt hỗ trợ
     });
   }
+
+
+
 
 </script>
 {% endblock %}

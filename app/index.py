@@ -1,15 +1,13 @@
 from app import app, login
 from flask import redirect, render_template, request
 import dao
-from flask_login import login_user
+from flask_login import login_user, logout_user
 from datetime import datetime
 
 
 @app.route('/', methods=['get'])
 def index():
-    airports = dao.get_all_airport()
-    seat_classes = dao.get_seat_class()
-    return render_template('/client/home.html', airports=airports, seat_classes=seat_classes)
+    return render_template('/client/home.html')
 
 
 @app.route('/flights', methods=['get'])
@@ -39,7 +37,14 @@ def admin_login():
 
 @app.route('/user/register', methods=['get', 'post'])
 def user_register():
+    err_msg = ""
+
     return render_template('client/user_register.html')
+
+
+@app.route("/user/user_profile", methods=['get'])
+def user_profile():
+    return render_template('client/user_profile.html')
 
 
 @app.route('/user/login', methods=['get', 'post'])
@@ -47,9 +52,33 @@ def user_login():
     return render_template('client/user_login.html')
 
 
+@app.route('/user/logout', methods=['post'])
+def user_logout():
+    logout_user()
+    return redirect('/')
+
+
+@app.route('/employee', methods=['get'])
+def employee_index():
+    return render_template('client/Employeelogin.html')
+
+
+@app.route('/employee/login', methods=['get', 'post'])
+def employee_login():
+    return render_template('client/Employeemain.html')
+
+
 @login.user_loader
 def get_user(user_id):
     return dao.get_user_by_id(user_id)
+
+
+@app.context_processor
+def common_response():
+    return {
+        'airports': dao.get_all_airport(),
+        'seat_classes': dao.get_seat_class()
+    }
 
 
 if __name__ == "__main__":
