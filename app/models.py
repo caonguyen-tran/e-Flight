@@ -2,7 +2,7 @@ from sqlalchemy import Integer, String, Float, DateTime, Column, Boolean, Enum, 
     Date
 from sqlalchemy.orm import relationship
 import enum
-from app import db
+from app import db, app
 from datetime import datetime
 from flask_login import UserMixin
 import hashlib
@@ -32,11 +32,11 @@ class User(db.Model, UserMixin):
         return self.username
 
 
-@event.listens_for(User.password, 'set', retval=True)
-def hash_user_password(target, pw, npw, init):
-    if pw != npw:
-        return str(hashlib.md5(pw.strip().encode('utf-8')).hexdigest())
-    return pw
+# @event.listens_for(User.password, 'set', retval=True)
+# def hash_user_password(target, pw, npw, init):
+#     if pw != npw:
+#         return str(hashlib.md5(pw.strip().encode('utf-8')).hexdigest())
+#     return pw
 
 
 class BaseModel(db.Model):
@@ -146,12 +146,10 @@ class Ticket(BaseModel):
 
 
 if __name__ == "__main__":
-    from app import app
-    import hashlib
-    from app import dao
-    #     w = db.create_all()
-    #     u = User(firstname='nguyen', lastname='tran', username='admin',
-    #              password=str(hashlib.md5('Admin@123'.encode('utf-8')).hexdigest()), gender='Male',
-    #              date_of_birth='2003-11-10 15:02:25', user_role=Role.ADMIN)
-    #     db.session.add(u)
-    #     db.session.commit()
+    with app.app_context():
+        db.create_all()
+        u = User(firstname='nguyen', lastname='tran', username='admin',email="sdfsjfhsuf",phone_number="45485448",
+                 password=str(hashlib.md5('Admin@123'.encode('utf-8')).hexdigest()), gender='Male',
+                  user_role=Role.ADMIN)
+        db.session.add(u)
+        db.session.commit()

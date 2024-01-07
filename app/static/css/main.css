@@ -565,6 +565,7 @@ body:focus{
     background-color: #cce2f6;
     border-radius:  0px 0px 20px 20px;
     padding: 5px 10px 0px 10px;
+    position: relative;
 }
 .footer-ou{
     position: relative;
@@ -589,6 +590,19 @@ body:focus{
     color: #01416e;
     line-height: 30px;
     margin: auto;
-    
+}
+
+.footer-name-ticket{
+    color: #01416e;
+    line-height: 30px;
+    margin: auto;
+}
+
+.btn-back-main {
+    margin: 20px;
+    right: 20px;
+    width: 200px;
+    height:  40px;
+    font-size: 18px;
 }
 

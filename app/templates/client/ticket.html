@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thông tin vé</title>
-<link rel="stylesheet" href="./css/main.css">
-<link rel="stylesheet" href="./css/base.css">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
 <!-- font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
@@ -16,9 +15,10 @@
 </head>
 <body>
     <div class="login-container" >
+
         <h1>THÔNG TIN VÉ</h1>
 
-    
+
             <div class="label-ticket">
                 <div class="label-ou">
                     <img class="label-ou-logo" src="./img/LOGO2.png" alt="logo">
@@ -76,15 +76,15 @@
                         <span class="ticket-detail-info-value">16C</span>
 
                     </div>
-                    
+
                     <div class="ticket-detail-info-1">
                         <span class="ticket-detail-info-title">NGÀY BAY</span>
                         <span style="padding-bottom: 5px;" class="ticket-detail-info-value">8/1/2024</span>
-                        
+
                         <span class="ticket-detail-info-title">GIỜ BAY</span>
                         <span class="ticket-detail-info-value">14:20</span>
                     </div>
-                    
+
                 </div>
                 <div class="ticket-detail border-left-dashed">
                     <div class="ticket-detail-info-1">
@@ -116,8 +116,8 @@
                     </div>
                 </div>
 
-                    
-                
+
+
             </div>
             <div class="footer-ticket">
                 <div class="footer-ou">
@@ -132,14 +132,16 @@
                     </div>
                 </div>
             </div>
+            <button  class="btn-back-main">Quay lại</button>
 
-                
-    </div>
-            
-    
-    <footer>
+
+        <footer>
         Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM
-    </footer>
+        </footer>
+    </div>
+
+
+
 </div>
 <script src="main.js"></script>
 </body>

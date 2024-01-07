@@ -7,7 +7,7 @@ from app import db
 
 @app.route('/', methods=['get'])
 def index():
-    return render_template('/client/home.html')
+    return render_template('/client/ticket.html')
 
 
 @app.route('/flights', methods=['get'])
