@@ -142,13 +142,13 @@ class Ticket(BaseModel):
     seat_id = Column(Integer, ForeignKey(Seat.id), nullable=False)
     customer = relationship('User', lazy=True)
     seat = relationship('Seat', lazy=True)
+    flight = relationship("Flight", lazy=True)
 
 
 if __name__ == "__main__":
     from app import app
     import hashlib
-
-    # with app.app_context():
+    from app import dao
     #     w = db.create_all()
     #     u = User(firstname='nguyen', lastname='tran', username='admin',
     #              password=str(hashlib.md5('Admin@123'.encode('utf-8')).hexdigest()), gender='Male',

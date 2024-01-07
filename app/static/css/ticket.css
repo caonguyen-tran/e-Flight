@@ -435,13 +435,14 @@ canvas{
 }
 
 .oder-ticket{
-    width: 35%;
+    width: 39%;
     padding-bottom: 10px;
-    min-height: 665px;
+    height: 669px;
     background-color: #05aff2;
     border-radius: 24px;
-    overflow: hidden;
     position: relative;
+    display:flex;
+    flex-direction: column;
 }
 
 .oder-ticket h3{
@@ -619,12 +620,10 @@ canvas{
     outline: none;
 }
 .costom-total-ticket{
-    margin-top: 46px;
-    width: 90%;
-    margin: auto;
-    position: absolute;
+    width: 100%;
     bottom: 0;
-    margin: 0px 0px 75px 6px;
+    display:flex;
+    justify-content: space-between;
 }
 .costom-total-ticket label{
     font-size: 18px;
@@ -638,13 +637,14 @@ canvas{
 
 .flight-item{
     width: 90%;
-    position: relative;
     border-radius: 20px;
     padding: 10px;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 600;
-    height: 178px;
+    height: 170px;
     background-color: rgb(209, 209, 209);
+    position: relative;
+    margin-top: 14px;
 }
 
 .company-logo{
@@ -665,11 +665,17 @@ canvas{
     background-color: rgb(249, 50, 0);
     height: 30px;
     width: 30px;
+    margin: 0px -2px 0px 0px;
+    transition: all 0.3s ease-out;
 }
 
 .flight-item button:hover{
     cursor: pointer;
     background-color: rgb(250, 125, 0);
+}
+
+.flight-item button > i{
+    cursor: pointer;
 }
 .titleDiv{
     display: flex;
@@ -680,19 +686,24 @@ canvas{
     height: 58px;
 }
 
+.titleDiv > h2{
+    padding: 0px 4px;
+}
+
 .big-div{
     display: flex;
     justify-content: space-between;
+    margin-top: 12px;
 }
 
 .date-div{
     text-align: center;
-    margin-right: 20px;
+    margin-right: 24px;
     height: 50px;
 }
 
 .date-div p:first-child{
-    height: 10px;
+    height: 30px;
     font-weight: 700;
     font-size: 24px;
     font-style: initial;
@@ -710,6 +721,7 @@ canvas{
     font-weight: 600;
     font-style: italic;
     border-radius: 4px;
+    width: 145px;
 }
 
 .quantityOpt{
@@ -726,4 +738,51 @@ canvas{
     height: 20px;
     margin-left: 4px;
     border-radius: 4px;
+    text-align: center;
+    width:40px;
+}
+
+#parentDiv{
+    width: 100%;
+    height: 70%;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.ticket-title{
+    width: 100%;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.price-box{
+    width: 100%;
+    height: 70px;
+    text-align: center;
+}
+
+.price-box > p{
+    line-height: 70px;
+}
+
+.price-box > p > a{
+    cursor: pointer;
+    color: #000;
+    background-color: red;
+    border-radius: 5px;
+    padding: 2px;
+    transition: all 1s ease-out;
+}
+
+.price-box > p >a:hover{
+    background-color: rgb(255, 74, 74);
+}
+
+.btn-success{
+    transition: all 0.3s ease-out;
 }

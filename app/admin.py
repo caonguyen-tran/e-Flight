@@ -57,7 +57,7 @@ class RouteView(AuthenticatedSystemAdmin):
 
 
 class SeatView(AuthenticatedSystemAdmin):
-    column_list = ['id', 'active', 'air_seat_class']
+    column_list = ['id', 'active', 'air_seat_class', 'air_seat_class_id']
 
 
 class StopoverView(AuthenticatedSystemAdmin):
@@ -73,7 +73,8 @@ class TicketView(AuthenticatedSystemAdmin):
 
 
 class AirSeatClassView(AuthenticatedSystemAdmin):
-    column_list = ['id', 'price', 'aircraft', 'seat_class']
+    column_list = ['id', 'price', 'aircraft', 'seat_class', 'seat_class_id']
+    column_filters = ['seat_class_id']
 
 
 class LogoutView(AuthenticatedUser):

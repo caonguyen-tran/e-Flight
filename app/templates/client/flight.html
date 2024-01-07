@@ -7,6 +7,7 @@
 
 {% block content %}
 <!-- form chọn lại tuyến bay -->
+<style scoped="scoped" onload="loadTicket({{tickets}})"></style>
 <div id="centeredDiv" class="form-search">
     <div class="form-costome">
 
@@ -51,7 +52,7 @@
 
             <div>
                 <a href="" id="hideButton">Huy</a>
-                <button type="submit"> Tim chuyen bay</button>
+                <button type="button"> Tim chuyen bay</button>
             </div>
         </form>
 
@@ -138,19 +139,24 @@
     <div class="columnSeparator"></div>
 
     <div class="oder-ticket">
-        <h3>Thông tin đặt chỗ</h3>
-        <h4>{{route_name}}</h4>
-        <p>Thông tin đặt vé</p>
-        <hr>
+        <div class="ticket-title">
+            <h3>Thông tin đặt chỗ</h3>
+            <h4>{{route_name}}</h4>
+            <p>Thông tin đặt vé</p>
+            <hr>
+        </div>
         <div id="parentDiv">
         </div>
         <div class="costom-total-ticket">
-            <label for="Total-price">Tổng tiền:</label>
-            <p>2.000.000 VND</p>
+            <h3 style="text-align: center; ">   Tổng tiền: </h3>
+            <h3 id="text-price">{{total_price}}</h3>
         </div>
-        <hr>
-        <div class="">
-            <button class="">Đặt vé</button>
+        <div class="price-box">
+            {% if current_user.is_authenticated %}
+            <button class="btn btn-success" onclick="pay()">Thanh toán</button>
+            {% else %}
+            <p>Vui lòng <a href="/user/login">đăng nhập</a> để thanh toán!</p>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -213,6 +219,8 @@
       behavior: "smooth" // Cuộn mượt nếu trình duyệt hỗ trợ
     });
   }
+
+
 
 
 </script>

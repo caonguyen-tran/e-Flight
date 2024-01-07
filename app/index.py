@@ -1,9 +1,9 @@
 from app import app, login
 from flask import redirect, render_template, request, jsonify, session
 import dao, utils
-from flask_login import login_user, logout_user, current_user
-from app.models import User, Role
-
+from flask_login import login_user, logout_user, current_user, login_required
+from app.models import User, Role, Ticket
+from app import db
 
 @app.route('/', methods=['get'])
 def index():
@@ -87,6 +87,9 @@ def user_login():
 
 @app.route('/user/logout')
 def user_logout():
+    tickets = session.get('tickets')
+    if tickets is not None:
+        del session['tickets']
     logout_user()
     return redirect('/')
 
@@ -128,7 +131,7 @@ def employee_search():
     return render_template('client/Employeemain.html', flights=flights, route_name=route_name)
 
 
-@app.route('/api/add_cart', methods=['post'])
+@app.route('/api/cart', methods=['post'])
 def add_to_cart():
     data = request.json
 
@@ -144,10 +147,10 @@ def add_to_cart():
             tickets[id]['seat_class'][sc_id]['quantity'] += 1
         else:
             tickets[id]['seat_class'][sc_id] = {
-                    'seat_class_name': data.get('seat_class_name'),
-                    'price': data.get('price'),
-                    'quantity': 1
-                }
+                'seat_class_name': data.get('seat_class_name'),
+                'price': data.get('price'),
+                'quantity': 1
+            }
     else:
         tickets[id] = {
             'id': id,
@@ -174,6 +177,51 @@ def add_to_cart():
     })
 
 
+@app.route('/api/cart/flight<flight_id>/<sc_id>', methods=['delete'])
+def remove_flight(flight_id, sc_id):
+    tickets = session.get('tickets')
+
+    if tickets and tickets[flight_id] and tickets[flight_id]['seat_class'][sc_id]:
+        del tickets[flight_id]['seat_class'][sc_id]
+
+    session['tickets'] = tickets
+
+    return jsonify({
+        'tickets': tickets,
+        'total_cost': utils.total_cost(tickets)
+    })
+
+
+@app.route('/api/pay', methods=['post'])
+@login_required
+def pay_method():
+    tickets = session.get('tickets')
+    tmp = {}
+    user = current_user
+    for ticket in tickets:
+        item = tickets[ticket]
+        id = item['id']
+        aircraft_id = item['aircraft_id']
+        for sc_id in item['seat_class']:
+            sc = item['seat_class'][sc_id]
+            quantity = int(sc['quantity'])
+            price = sc['price']
+            air_seat = dao.get_air_seat_class(id, aircraft_id, sc_id)
+            for i in range(quantity):
+                seat = dao.get_seat(air_seat.air_seat_class_id)
+                t = Ticket(customer_id=user.id, flight_id=id, seat_id=seat.id, total_price=price)
+                db.session.add(t)
+                db.session.commit()
+
+            del item
+
+    list_ticket = dao.get_ticket_by_user(user.id)
+
+    return jsonify({
+        "list_ticket": list_ticket
+    })
+
+
 @login.user_loader
 def get_user(user_id):
     return dao.get_user_by_id(user_id)
@@ -181,10 +229,15 @@ def get_user(user_id):
 
 @app.context_processor
 def common_response():
+    tickets = session.get('tickets')
+    if tickets is None:
+        tickets = {}
     return {
         'airports': dao.get_all_airport(),
         'seat_classes': dao.get_seat_class(),
-        'current_user': current_user
+        'current_user': current_user,
+        'tickets': tickets,
+        'total_price': utils.total_cost(tickets)['total_price']
     }
 
 

@@ -1,4 +1,4 @@
-from app.models import User, Route, Airport, Flight, SeatClass, Aircraft, Seat, AirSeatClass, Company
+from app.models import User, Route, Airport, Flight, SeatClass, Aircraft, Seat, AirSeatClass, Company, Ticket
 import hashlib
 from app import app, db
 from sqlalchemy import func
@@ -88,3 +88,29 @@ def add_user(firstname, lastname, username, pw, gender, date_of_birth, email, ph
     db.session.add(u)
     db.session.commit()
 
+
+def get_air_seat_class(flight_id, aircraft_id, sc_id):
+    asc = db.session.query(Flight, AirSeatClass, Aircraft) \
+        .join(Flight, Flight.aircraft_id.__eq__(Aircraft.id)) \
+        .join(AirSeatClass, AirSeatClass.aircraft_id.__eq__(aircraft_id)) \
+        .filter(Flight.id.__eq__(flight_id)) \
+        .filter(AirSeatClass.aircraft_id.__eq__(aircraft_id)) \
+        .filter(AirSeatClass.seat_class_id.__eq__(sc_id)) \
+        .all()
+
+    list_asc = {}
+    for item in asc:
+        pass
+    return asc
+
+
+def get_seat(asc_id):
+    seats = db.session.query(Seat) \
+        .filter(Seat.air_seat_class_id.__eq__(asc_id)) \
+        .filter(Seat.active.__eq__(1)).first()
+
+    return seats
+
+
+def get_ticket_by_user(user_id):
+    return Ticket.query.filter(Ticket.customer_id.__eq__(user_id)).all()
