@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+<title>Đăng nhập hệ thống POS</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Employeemain.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/employeebase.css') }}">
+
+<!-- font -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<script src="https://kit.fontawesome.com/dd307a4d09.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!-- xuất thông tin vé và thanh toán -->
+    <div class="employee-payment" id="form-payment">
+        <div class="background-payment"></div>
+        <div class="form-payment-infor show" id="form-infor">
+            <form action="#">
+                <div class="info-ticket costome-ticket" id="content-to-print">
+                    <div class="ticket-detail">
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">HÃNG CHUYÊN CHỠ/CARRER</span>
+                            <span class="ticket-detail-info-value">VIETNAM AIRLINER</span>
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">HỌ VÀ TÊN/NAME</span>
+                            <span class="ticket-detail-info-value">TRẦN CAO NGUYÊN</span>
+    
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">NƠI ĐI/FROM</span>
+                            <span class="ticket-detail-info-value">CATBI TAY NGUYÊN</span>
+    
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">NƠI ĐẾN/TO</span>
+                            <span class="ticket-detail-info-value">TP. HO CHI MINH</span>
+    
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">GHI CHÚ</span>
+                            <span class="ticket-detail-info-value">TKNE    762763174112370123</span>
+                        </div>
+                    </div>
+                    <div class="ticket-detail">
+                        <div class="ticket-detail-info-qr">
+                            <div id="qrcode" style="width: 90px;"></div></button>
+                            <div><p>QR CODE</p></div>
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">CHUYẾN BAY/FIGHT</span>
+                            <span class="ticket-detail-info-value">VN234</span>
+    
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">GHẾ/SEAT</span>
+                            <span class="ticket-detail-info-value">16C</span>
+    
+                        </div>
+                        
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">NGÀY BAY</span>
+                            <span style="padding-bottom: 5px;" class="ticket-detail-info-value">8/1/2024</span>
+                            
+                            <span class="ticket-detail-info-title">GIỜ BAY</span>
+                            <span class="ticket-detail-info-value">14:20</span>
+                        </div>
+                        
+                    </div>
+                    <div class="ticket-detail border-left-dashed">
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">TKNE 762763174112370123</span>
+                            <span class="ticket-detail-info-value">FR: CATBI TAY NGUYÊN</span>
+                            <span class="ticket-detail-info-value">TO: TP. HO CHI MINH</span>
+    
+    
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">HỌ VÀ TÊN/NAME</span>
+                            <span class="ticket-detail-info-value">TRẦN CAO NGUYÊN</span>
+    
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">CHUYẾN BAY/FIGHT</span>
+                            <span class="ticket-detail-info-value">VN234</span>
+    
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">GHẾ/SEAT</span>
+                            <span style="padding-bottom: 5px;" class="ticket-detail-info-value">16C</span>
+                            <span class="ticket-detail-info-title">NGÀY BAY</span>
+                            <span style="padding-bottom: 5px;" class="ticket-detail-info-value">
+                                8/1/2024</span>
+                            <span class="ticket-detail-info-title">GIỜ BAY</span>
+                            <span class="ticket-detail-info-value">14:20</span>
+    
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="button-cancel-payment show">
+                <button type="submit" onclick="printPDF()">Thanh toán</button>
+                <button type="submit" onclick="hideform()">Hủy</button>
+            </div>
+        </div>
+    
+        <div class="input-name show" id="form-name">
+            <form>
+                <div class="container">
+                    <label for="fullName">Tên:</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Nhập tên của bạn">
+                    <label for="phoneNumber">Số điện thoại:</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Nhập số điện thoại của bạn">
+                </div>
+            </form>
+            <div class="button-container">
+                <button type="submit" onclick="showin_hiname()">Tiếp tục</button>
+                <button onclick="hideform()">Hủy</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- nhân viên chọn chức năng tìm kiếm và tạo chuyến bay -->
+    <div class="main-container">
+        <div class="header-main">
+            <h1>Hello Employee</h1>
+        </div>
+        <!-- Các nút ở phía trên cùng của trang -->
+        <div class="tab-control-main">
+            <button class="tablink" onclick="openTab(event, 'Search')">Tìm kiếm chuyến</button>
+            <button class="tablink" onclick="openTab(event, 'CreateFlight')">Tạo chuyến bay</button>
+        </div>
+        <!-- MAIN CHỨC NĂNG TÌM KIẾM CHUYẾN BAY -->
+        <div id="Search" class="search-main tabcontent">
+            <form action="">
+                <div class="from-to-seat">
+                    <!-- điểm đi -->
+                    <div class="select-costom">
+                        <label class="from-to-seat-label" for="from">From</label><br>
+                        <div>
+                            <i class="fa-solid fa-plane-departure icon-costom"></i>
+                            <select class="select-costom-chose"  name="from">
+                                <option value="HCM">TP HCM</option>
+                                <option value="HCM">TP HCM</option>
+                                <option value="HCM">TP HCM</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <i class="fa-solid fa-plane"></i>
+                    <!-- điểm đến -->
+                    <div class="select-costom">
+                        <label   class="from-to-seat-label" for="to">To</label><br>
+                        <div >
+                            <i class="fa-solid fa-plane-arrival"></i>
+                            <select class="select-costom-chose" name="to">
+                                <option value="HCM">TP HCM</option>
+                                <option value="HCM">TP HCM</option>
+                                <option value="HCM">TP HCM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="costome-date-seat-button">
+                    <div class="item">
+                        <label for="">Chọn Ngày:</label><br>
+                        <input type="date">
+                    </div>
+    
+                    <div class="item">
+                        <label for="">Chọn ghế:</label><br>
+                        <select name="" id="">
+                            <option value="">ádasd</option>
+                        </select>
+                    </div>
+    
+                    <div class="item">
+                        <label for="">Nhập số lượng:</label><br>
+                        <input type="number" name="" id="" min="1" value="1">
+                    </div>
+    
+                    <div class="find-from">
+                        <button class="btn-find">Tìm chuyến bay</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã chuyến bay</th>
+                            <th>Hãng bay</th>
+                            <th>Trạng thái ghế</th>
+                            <th>Giá vé</th>
+                            <th>Chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>CB001</td>
+                            <td>VN Airlines</td>
+                            <td>Đang còn vé</td>
+                            <td>1,000,000 VND</td>
+                            <td><button onclick="showform()">Chọn</button></td>
+                        </tr>
+                        <!-- Thêm các dòng dữ liệu khác tương tự ở đây -->
+                    </tbody>
+                </table>
+            </div>
+           
+        </div>
+        <!-- MAIN CHỨC NĂNG LẬP LỊCH CHUYẾN BAY -->
+        <div id="CreateFlight" class="search-main tabcontent">
+            <form action="">
+                <div class="from-select-route width-90-mg-auto">
+                    <label class="font-lb-18" for="route">Chọn tuyến:</label>
+                    <select  style="font-size: 16px;"class=" select-route-option"  id="route" name="route">
+                        <option value="">Tân Sơn Nhất - Cam Ranh</option>
+                        <option value="">HCM - HN</option>
+                        <option value="">Tân Sơn Nhất - Cam Ranh</option>
+                        <!-- Thêm các tuyến khác vào đây -->
+                    </select>
+                </div>             
+                <div class="fight-control width-90-mg-auto font-lb-18">
+                    <div>
+                        <label for="aircraft">Chọn máy bay:</label>
+                        <select id="aircraft" name="aircraft">
+                            <option value="airbusA320">Airbus A320</option>
+                            <option value="airbusA320">Airbus A320</option>
+                            <option value="airbusA320">Airbus A320</option>
+                            <!-- Thêm các loại máy bay khác vào đây -->
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="date">Ngày bay:</label>
+                        <input type="date" id="date" name="date">  
+                    </div>
+                    <div>
+                        <label for="time">Giờ bay:</label>
+                        <input type="time" id="time" name="time">       
+                    </div>
+                </div>
+                
+                <div class="from-seeting-seat">
+                    <div>
+                        <label for="price1">Nhập giá vé hạng 1:</label>
+                        <input  placeholder="0" type="text" id="price1" name="price1">
+    
+                    </div>
+                    <div>
+                        <label for="price2">Nhập giá vé hạng 2:</label>
+                        <input placeholder="0" type="text" id="price2" name="price2">
+                    </div>
+                    <div>
+                        <label for="price3">Nhập giá vé hạng 3:</label>
+                        <input placeholder="0" type="text" id="price3" name="price3">
+                    </div>
+                    <div>
+                        <label for="price4">Nhập giá vé hạng 4:</label>
+                        <input placeholder="0" type="text" id="price4" name="price4">
+                    </div>
+                    
+                </div>
+                <div class="from-intermediate-airport font-lb-18">
+                    <div>
+                        <label for="">Sân bay trung gian:</label>
+                    <select id="" name="">
+                        <option value="Không có">Không có</option>
+                        <option value="HCM">HCM</option>
+                        <option value="Hue">Huế</option>
+                    </select>
+                    </div>
+                    <div style="display: flex;">
+                        <button class="btn-create-fight" id="btn-edit" style="background-color: rgb(33, 160, 33);">Chỉnh sửa xong</button>
+                        <button type="button" class="btn-create-fight" id="btn-cancel" style="background-color: rgb(255, 76, 76);" onclick="btncancel()">Hủy</button>
+                        <button class="btn-create-fight" id="btn-create">Tạo</button>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- <form action=""> -->
+                <div class="list" style="height: 300px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã chuyến bay</th>
+                                <th>Từ sân bay</th>
+                                <th>Đến sân bay</th>
+                                <th>Máy bay</th>
+                                <th>số lượng ghế</th>
+                                <th>Ngày bay</th>
+                                <th>Giờ bay</th>
+                                <th>SB trung gian</th>
+                                <th>Giá vé</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ABC123</td>
+                                <td>HCM</td>
+                                <td>HN</td>
+                                <td>B52</td>
+                                <td>200</td>
+                                <td>10/10/2024</td>
+                                <td>23:20</td>
+                                <td>none</td>
+                                <td>2000000</td>
+                                <td><button href="/" onclick="hidebtncreate()"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                            </tr>
+                            <!-- Thêm các dòng dữ liệu khác tương tự ở đây -->
+                        </tbody>
+                    </table>
+                </div>
+            <!-- </form> -->
+        </div>
+
+        <footer>
+            Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM
+        </footer>
+    </div>
+<script src="main.js"></script>
+<script>
+    // Hàm để mở một tab nội dung cụ thể
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+
+      
+      // Ẩn tất cả nội dung của các tab
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      
+      // Xóa bỏ màu nền của tất cả các tablinks/nút
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      
+      // Hiển thị nội dung cụ thể của tab và thêm class "active" vào nút đã mở tab
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    
+    // Lấy phần tử với id="defaultOpen" và click vào nó
+    // Điều này sẽ mở tab đầu tiên mặc định
+    document.getElementsByClassName("tablink")[0].click();
+
+
+    // xử lý khi nhấn nút chọn
+    function showform(){
+        let form = document.getElementById('form-payment');
+        form.style.display = 'block';
+        showformname();
+    }
+
+    function hideform(){
+        let form = document.getElementById('form-payment');
+        form.style.display = 'none';
+        hideforminfor();
+        hideformname();
+    }
+
+    function showin_hiname(){
+        let form = document.getElementById('form-infor');
+        form.style.display = 'block';
+        hideformname();
+    }
+
+    function showformname(){
+        let form = document.getElementById('form-name');
+        form.style.display = 'block';
+    }
+
+    function hideformname(){
+        let formname = document.getElementById('form-name');
+        formname.style.display = 'none';
+    }
+
+    function hideforminfor(){
+        let form = document.getElementById('form-infor');
+        form.style.display = 'none';
+    }
+    /* xử lý nut khi chọn edit */
+    function hidebtncreate(){
+        let btn = document.getElementById('btn-create');
+        btn.style.display = 'none';
+
+        let btncan = document.getElementById('btn-cancel');
+        btncan.style.display = 'block';
+
+        let btnedit = document.getElementById('btn-edit');
+        btnedit.style.display = 'block';
+    }
+
+    function btncancel(){
+        let btn = document.getElementById('btn-create');
+        btn.style.display = 'block'
+
+        let btncan = document.getElementById('btn-cancel');
+        btncan.style.display = 'none';
+
+        let btnedit = document.getElementById('btn-edit');
+        btnedit.style.display = 'none';
+    }
+    </script>
+
+    <script>
+        function printPDF() {
+            const element = document.getElementById('content-to-print');
+            html2pdf()
+                .from(element)
+                .save();
+        }
+    </script>
+    <!-- tao QR -->
+    <script type="text/javascript">
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://example.com",
+            width: 128,
+            height: 128,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>
