@@ -1,0 +1,370 @@
+{% extends 'client/base.html' %}
+{% block title %}
+<title>Khách hàng Profile</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+<link href="{{ url_for('static', filename='css/user_profile.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-showticket"  id="showticket">
+
+        <div class="label-ticket" >
+                    <div class="label-ou">
+                        <img class="label-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                        <label class="label-ou-name">AIRPORT</label>
+                    </div>
+                    <h2 class="label-type-ticket">Thương Gia</h2>
+                    <div>
+                        <div class="label-ou">
+                            <img class="label-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                            <label class="label-ou-name">AIRPORT</label>
+                        </div>
+                    </div>
+                </div>
+        <div class="info-ticket">
+                    <div class="ticket-detail">
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">HÃNG CHUYÊN CHỠ/CARRER</span>
+                            <span class="ticket-detail-info-value">VIETNAM AIRLINER</span>
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">HỌ VÀ TÊN/NAME</span>
+                            <span class="ticket-detail-info-value">TRẦN CAO NGUYÊN</span>
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">NƠI ĐI/FROM</span>
+                            <span class="ticket-detail-info-value">CATBI TAY NGUYÊN</span>
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">NƠI ĐẾN/TO</span>
+                            <span class="ticket-detail-info-value">TP. HO CHI MINH</span>
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">GHI CHÚ</span>
+                            <span class="ticket-detail-info-value">TKNE    762763174112370123</span>
+
+                        </div>
+                    </div>
+                    <div class="ticket-detail">
+                        <div class="ticket-detail-info-qr">
+                            <img src="https://cf.shopee.vn/file/a5e589e8e118e937dc660f224b9a1472" alt="QR Dowload" class="ticket-detail-info-qr">
+                            <span class="ticket-detail-info-qr-lb">QR CODE</span>
+
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">CHUYẾN BAY/FIGHT</span>
+                            <span class="ticket-detail-info-value">VN234</span>
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">GHẾ/SEAT</span>
+                            <span class="ticket-detail-info-value">16C</span>
+
+                        </div>
+
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">NGÀY BAY</span>
+                            <span style="padding-bottom: 5px;" class="ticket-detail-info-value">8/1/2024</span>
+
+                            <span class="ticket-detail-info-title">GIỜ BAY</span>
+                            <span class="ticket-detail-info-value">14:20</span>
+                        </div>
+
+                    </div>
+                    <div class="ticket-detail border-left-dashed">
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">TKNE 762763174112370123</span>
+                            <span class="ticket-detail-info-value">FR: CATBI TAY NGUYÊN</span>
+                            <span class="ticket-detail-info-value">TO: TP. HO CHI MINH</span>
+
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">HỌ VÀ TÊN/NAME</span>
+                            <span class="ticket-detail-info-value">TRẦN CAO NGUYÊN</span>
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">CHUYẾN BAY/FIGHT</span>
+                            <span class="ticket-detail-info-value">VN234</span>
+
+                        </div>
+                        <div class="ticket-detail-info-1">
+                            <span class="ticket-detail-info-title">GHẾ/SEAT</span>
+                            <span style="padding-bottom: 5px;" class="ticket-detail-info-value">16C</span>
+                            <span class="ticket-detail-info-title">NGÀY BAY</span>
+                            <span style="padding-bottom: 5px;" class="ticket-detail-info-value">
+                                8/1/2024</span>
+                            <span class="ticket-detail-info-title">GIỜ BAY</span>
+                            <span class="ticket-detail-info-value">14:20</span>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+        <div class="footer-ticket">
+                    <div class="footer-ou">
+                        <img class="footer-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                        <label class="footer-ou-name">AIRPORT</label>
+                    </div>
+                    <h5 class="footer-name-ticket">THẺ LÊN MÁY BAY</h5>
+                    <div>
+                        <div class="footer-ou">
+                            <img class="footer-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                            <label class="footer-ou-name">AIRPORT</label>
+                        </div>
+                    </div>
+                </div>
+    <button onclick="unlock()">X</button>
+</div>
+
+<div class="profile-container">
+    <div class="profile-info">
+        <h1>Thông tin của bạn</h1>
+        <table>
+            <tr>
+                <th>Tên:</th>
+                <td>{{current_user.firstname}} {{current_user.lastname}}</td>
+            </tr>
+            <tr>
+                <th>Giới tính:</th>
+                <td>{{current_user.gender}}</td>
+            </tr>
+            <tr>
+                <th>Ngày sinh:</th>
+                <td>{{current_user.date_of_birth}}</td>
+            </tr>
+            <tr>
+                <th>Số điện thoại:</th>
+                <td>{{current_user.phone_number}}</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>{{current_user.email}}</td>
+            </tr>
+        </table>
+
+        <button class="edit-button" onclick="openEditModal()">Chỉnh sửa thông tin cá nhân</button>
+
+        <h2>Lịch sử giao dịch</h2>
+        <div class="list-transaction">
+            <table>
+                <tr>
+                    <th>Mã vé</th>
+                    <th>Ngày giao dịch</th>
+                    <th>Tuyến</th>
+                    <th>Mã chuyến bay</th>
+                    <th>Mã máy bay</th>
+                    <th>Hãng</th>
+                    <th>Mã ghế</th>
+                    <th>Hạng ghế</th>
+                    <th>Ngày bay</th>
+                    <th>Giờ bay</th>
+                    <th>Chi tiết</th>
+                </tr>
+
+                {%for ticket_item in list_tickets%}
+                <tr>
+                    <td>{{ticket_item.ticket_id}}</td>
+                    <td>{{ticket_item.ticket_date.day}}/{{ticket_item.ticket_date.month}}/{{ticket_item.ticket_date.year}}</td>
+                    <td>{{ticket_item.route_name}}</td>
+                    <td>{{ticket_item.flight_id}}</td>
+                    <td>{{ticket_item.aircraft_name}}</td>
+                    <td>{{ticket_item.company_name}}</td>
+                    <td>{{ticket_item.seat_id}}</td>
+                    <td>{{ticket_item.seat_class_name}}</td>
+                    <td>{{ticket_item.departure_time.day}}/{{ticket_item.departure_time.month}}/{{ticket_item.departure_time.year}}</td>
+                    <td>{{ticket_item.departure_time.hour}}:{{ticket_item.departure_time.minute}}</td>
+                    <td><button type="button" onclick="scrollToTop()">Xem</button></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+
+    </div>
+
+    <div class="avatar-container avata" id="avatarContainer" onclick="openFileInputForEdit()">
+        <img src="{{current_user.avatar}}" alt="Avatar của khách hàng" id="avatarImage">
+        <p>{{current_user.firstname}} {{current_user.lastname}}</p>
+        <span class="upload-text" id="uploadText" onmouseover="showUploadText()" onmouseout="hideUploadText()"
+              onclick="openFileInputForEdit()">Thay đổi ảnh đại diện</span>
+        <input type="file" accept="image/*" class="upload-input" id="fileInputForEdit"
+               onchange="displaySelectedImageForEdit()">
+    </div>
+
+    <div class="edit-modal" id="editModal">
+        <div class="modal-content">
+            <h2>Chỉnh sửa thông tin cá nhân</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editAvatar">Ảnh đại diện:</label>
+                    <input type="file" accept="image/*" id="editAvatar" name="avatar"
+                           onchange="displaySelectedImageForEdit()">
+                </div>
+
+                <div class="avatar-container" id="editedAvatarContainer">
+                    <img src="{{current_user.avatar}}" alt="Avatar của khách hàng" id="editedAvatarImage"
+                         style="width: 100px; height: 100px; margin: auto; padding: 0;">
+                    <span class="upload-text" id="editedUploadText" onmouseover="showUploadTextForEdit()"
+                          onmouseout="hideUploadTextForEdit()"
+                          onclick="openFileInputForEdit()">Thay đổi ảnh đại diện</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="editFirstname">Họ:</label>
+                    <input type="text" id="editFirstname" name="firstname" required>
+                </div>
+                <div class="form-group">
+                    <label for="editLastname">Tên:</label>
+                    <input type="text" id="editLastname" name="lastname" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDOB">Ngày sinh:</label>
+                    <input type="date" id="editDOB" name="date_of_birth" required>
+                </div>
+                <div class="form-group">
+                    <label for="editGender">Giới tính:</label>
+                    <select id="editGender" name="gender">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email:</label>
+                    <input type="email" id="editEmail" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editPhone">Số điện thoại: </label>
+                    <input type="text" id="editPhone" name="phone" required>
+                </div>
+                <button type="button" onclick="saveChanges()" class="form-group-button">Lưu thay đổi</button>
+                <button type="button" onclick="closeEditModal()" class="form-group-button">Hủy</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+<script>
+    function openEditModal() {
+        document.getElementById("editModal").style.display = "flex";
+    }
+
+    function closeEditModal() {
+        document.getElementById("editModal").style.display = "none";
+    }
+    document.getElementById(editDOB).valueAsDate = new Date()
+    fucntion checkValidate(){
+        var firstname = document.getElementById('editFirstname').value
+        var lastname = document.getElementById('editLastname').value
+        var avatar = document.getElementById('editAvatar')
+        var gender = document.getElementById('editGender').value
+        var email = document.getElementById('editEmail').value
+        var phone = document.getElementById('editPhone').value
+
+        if(email == "" || firstname=="" || lastname == "" || phone == ""){
+            alert("Vui long nhap day du thong tin")
+        }
+
+        else{
+            document.getElementById('editForm').submit()
+        }
+    }
+
+    function saveChanges() {
+        // Xử lý lưu thay đổi ở đây
+        alert("Thay đổi đã được lưu!");
+        closeEditModal();
+    }
+
+    function showUploadText() {
+        document.getElementById("uploadText").style.display = "block";
+    }
+
+    function hideUploadText() {
+        document.getElementById("uploadText").style.display = "none";
+    }
+
+    function openFileInput() {
+        document.getElementById("fileInput").click();
+    }
+
+    function displaySelectedImage() {
+        var input = document.getElementById("fileInput");
+        var image = document.getElementById("avatarImage");
+
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            image.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+
+        hideUploadText(); // Ẩn chữ "Chọn ảnh đại diện" sau khi đã chọn ảnh
+    }
+
+    function openFileInputForEdit() {
+        document.getElementById("fileInputForEdit").click();
+    }
+
+    function showUploadTextForEdit() {
+        document.getElementById("editedUploadText").style.display = "block";
+    }
+
+    function hideUploadTextForEdit() {
+        document.getElementById("editedUploadText").style.display = "none";
+    }
+
+    function displaySelectedImageForEdit() {
+        var input = document.getElementById("editAvatar");
+        var image = document.getElementById("editedAvatarImage");
+
+        var file = input.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            image.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+
+        hideUploadTextForEdit();
+    }
+
+</script>
+
+<script>
+    <!--    ham đưa lên đầu trang va khóa thanh trượt-->
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+        document.body.style.overflow = 'hidden';
+
+        let divtic = document.getElementById("showticket");
+        divtic.style.display = "block";
+    }
+
+<!--    nut dong ticket-->
+    function unlock() {
+        document.body.style.overflow = '';
+        let divtic = document.getElementById("showticket");
+        divtic.style.display = "none";
+    }
+
+</script>
+{% endblock %}
