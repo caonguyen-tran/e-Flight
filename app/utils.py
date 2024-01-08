@@ -5,7 +5,7 @@ def format_date(date):
     date_obj = datetime.strptime(date, '%Y-%m-%d')
     day_of_week = date_obj.strftime('%A')
     date_format = str(date).split('-')
-    return day_of_week + "," + date_format[2] + " Tháng " + date_format[1] + " " + date_format[0]
+    return day_of_week + ", " + date_format[2] + " Tháng " + date_format[1] + " " + date_format[0]
 
 
 def total_cost(tickets):

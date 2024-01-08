@@ -7,19 +7,19 @@
 
 {% block content %}
 <!-- form chọn lại tuyến bay -->
-<style scoped="scoped" onload="loadTicket({{tickets}})"></style>
+<style scoped="scoped" onload="loadTicket({{tickets}}, {{total_price}})"></style>
 <div id="centeredDiv" class="form-search">
     <div class="form-costome">
 
         <form action="#">
             <div class="costome-select-flight">
-                <label for="">From:</label>
+                <label for="">Nơi xuất phát:</label>
                 <select name="from">
                     {%for airport in airports%}
                     <option value="{{airport.id}}">{{airport.locate}}</option>
                     {%endfor%}
                 </select>
-                <label for="">To:</label>
+                <label for="">Nơi đến:</label>
                 <select name="to">
                     {%for airport in airports%}
                     <option value="{{airport.id}}">{{airport.locate}}</option>
@@ -116,7 +116,7 @@
             <div class="airline-price">
                 <img src="{{flight.company_logo}}" alt="hinh">
                 <h3>{{flight.company_name}}</h3>
-                <p>Giá: {{flight.price}}</p>
+                <p style="text-align: right">Giá: {{flight.price}}đ</p>
             </div>
             <div class="info-ticket">
                 <div class="info">
@@ -142,14 +142,14 @@
         <div class="ticket-title">
             <h3>Thông tin đặt chỗ</h3>
             <h4>{{route_name}}</h4>
-            <p>Thông tin đặt vé</p>
+            <p style="height: 30px; line-height: 30px; font-size:24px;">Thông tin đặt vé</p>
             <hr>
         </div>
         <div id="parentDiv">
         </div>
         <div class="costom-total-ticket">
             <h3 style="text-align: center; ">   Tổng tiền: </h3>
-            <h3 id="text-price">{{total_price}}</h3>
+            <h3 id="text-price">{{total_price}}đ</h3>
         </div>
         <div class="price-box">
             {% if current_user.is_authenticated %}

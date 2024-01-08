@@ -63,7 +63,7 @@ def get_flights(locate_from, locate_to, date, seat_class):
             'id': flight.Flight.id,
             'departure_time': flight.Flight.departure_time,
             'aircraft_name': flight.Aircraft.name,
-            'price': flight.AirSeatClass.price,
+            'price': int(flight.AirSeatClass.price),
             'seat_class_id': flight.SeatClass.id,
             'seat_class_name': flight.SeatClass.name,
             'name_route': flight.Route.name,
@@ -96,12 +96,9 @@ def get_air_seat_class(flight_id, aircraft_id, sc_id):
         .filter(Flight.id.__eq__(flight_id)) \
         .filter(AirSeatClass.aircraft_id.__eq__(aircraft_id)) \
         .filter(AirSeatClass.seat_class_id.__eq__(sc_id)) \
-        .all()
+        .first()
 
-    list_asc = {}
-    for item in asc:
-        pass
-    return asc
+    return asc.AirSeatClass.id
 
 
 def get_seat(asc_id):
@@ -113,4 +110,72 @@ def get_seat(asc_id):
 
 
 def get_ticket_by_user(user_id):
-    return Ticket.query.filter(Ticket.customer_id.__eq__(user_id)).all()
+    ticket_of_user = Ticket.query.filter(Ticket.customer_id.__eq__(user_id)).all()
+
+    list_ticket = []
+    for ticket in ticket_of_user:
+        list_ticket.append({
+            'customer_id': ticket.customer_id,
+            'flight_id': ticket.flight_id,
+            'seat_id': ticket.seat_id,
+            'total_price': ticket.total_price,
+            'created_date': ticket.created_date
+        })
+
+    return list_ticket
+
+
+def get_info_ticket_user(user_id):
+    info_tickets = db.session.query(Ticket, User, Seat, AirSeatClass, Flight, Aircraft, Company, Route, SeatClass) \
+        .join(User, User.id.__eq__(Ticket.customer_id)) \
+        .join(Seat, Seat.id.__eq__(Ticket.seat_id)) \
+        .join(Flight, Flight.id.__eq__(Ticket.flight_id)) \
+        .join(AirSeatClass, AirSeatClass.id.__eq__(Seat.air_seat_class_id)) \
+        .join(SeatClass, SeatClass.id.__eq__(AirSeatClass.seat_class_id)) \
+        .join(Aircraft, Aircraft.id.__eq__(Flight.id)) \
+        .join(Company, Company.id.__eq__(Aircraft.company_id)) \
+        .join(Route, Route.id.__eq__(Flight.route_id)) \
+        .filter(User.id.__eq__(user_id)).all()
+
+    list_ticket = []
+
+    for info in info_tickets:
+        list_ticket.append({
+            'ticket_id': info.Ticket.id,
+            'customer_id': info.Ticket.customer_id,
+            'flight_id': info.Ticket.flight_id,
+            'seat_id': info.Ticket.seat_id,
+            'seat_class_name': info.SeatClass.name,
+            'aircraft_name': info.Aircraft.name,
+            'company_name': info.Company.name,
+            'route_name': info.Route.name,
+            'ticket_date': info.Ticket.created_date,
+            'departure_time': info.Flight.departure_time
+        })
+
+    return list_ticket
+
+
+def get_all_flight():
+    return Flight.query.all()
+
+
+def get_all_route():
+    return Route.query.all()
+
+
+def get_all_aircraft():
+    return Aircraft.query.all()
+
+
+def create_flight(emp_id, route_id, aircraft_id, name, departure_time, arrival_time):
+    f = Flight(emp_id=emp_id, route_id=route_id, aircraft_id=aircraft_id, name=name, departure_time=departure_time,
+               arrival_time=arrival_time)
+    db.session.add(f)
+    db.session.commit()
+
+
+
+
+
+

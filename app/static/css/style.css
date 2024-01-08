@@ -24,6 +24,24 @@ header{
     top: 0px;
 }
 
+body::-webkit-scrollbar{
+    width: 8px;
+    visibility: visible;
+}
+
+body::-webkit-scrollbar{
+    width: 8px;
+    background-color: var(--backgr-content);
+}
+
+
+body::-webkit-scrollbar-thumb{
+    background-color: rgb(115, 115, 115);
+    border-radius: 5px;
+    width: 5px;
+}
+
+
 .costom-navbar{
     width: 90%;
     height: 100%;
@@ -32,6 +50,11 @@ header{
     justify-content: space-between;
     transition: 0.4s;
     /* background-color: #fb6767; */
+}
+
+.costom-navbar a:hover,
+#avatar:hover{
+    cursor: pointer;
 }
 
 .logo-header a img{

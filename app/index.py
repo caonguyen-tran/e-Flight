@@ -5,6 +5,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Role, Ticket
 from app import db
 
+
 @app.route('/', methods=['get'])
 def index():
     return render_template('/client/home.html')
@@ -66,7 +67,8 @@ def user_register():
 
 @app.route("/user/user_profile", methods=['get'])
 def user_profile():
-    return render_template('client/user_profile.html')
+    list_tickets = dao.get_info_ticket_user(current_user.id)
+    return render_template('client/user_profile.html', list_tickets=list_tickets)
 
 
 @app.route('/user/login', methods=['get', 'post'])
@@ -113,10 +115,16 @@ def employee_login():
 
 
 @app.route('/employee', methods=['get'])
+@login_required
 def employee_index():
-    if current_user.is_authenticated:
-        return render_template('client/Employeemain.html')
+    if current_user.is_authenticated and current_user.user_role == Role.EMPLOYEE:
+        all_flights = dao.get_all_flight()
+        routes = dao.get_all_route()
+        list_aircrafts = dao.get_all_aircraft()
+        return render_template('client/Employeemain.html', all_flights=all_flights, routes=routes,
+                               list_aircrafts=list_aircrafts)
     else:
+        logout_user()
         return redirect('/employee/login')
 
 
@@ -129,6 +137,18 @@ def employee_search():
     flights = dao.get_flights(locate_from, locate_to, dt, sc)
     route_name = dao.get_route_name(locate_from, locate_to).name
     return render_template('client/Employeemain.html', flights=flights, route_name=route_name)
+
+
+@app.route('/employee/api/add_flight', methods=['post'])
+def employee_add_flight():
+    route_id = request.form.get('route')
+    aircraft = request.form.get('aircraft')
+    departure_time = request.form.get('date')
+    arrival_time = request.form.get('time')
+    name = request.form.get('name')
+    emp_id = current_user.id
+    p = dao.create_flight(emp_id, route_id, aircraft, name, departure_time, arrival_time)
+    return redirect('/employee')
 
 
 @app.route('/api/cart', methods=['post'])
@@ -183,6 +203,8 @@ def remove_flight(flight_id, sc_id):
 
     if tickets and tickets[flight_id] and tickets[flight_id]['seat_class'][sc_id]:
         del tickets[flight_id]['seat_class'][sc_id]
+    if tickets and tickets[flight_id] and tickets[flight_id]['seat_class'] == {}:
+        del tickets[flight_id]
 
     session['tickets'] = tickets
 
@@ -196,30 +218,46 @@ def remove_flight(flight_id, sc_id):
 @login_required
 def pay_method():
     tickets = session.get('tickets')
-    tmp = {}
     user = current_user
-    for ticket in tickets:
-        item = tickets[ticket]
-        id = item['id']
-        aircraft_id = item['aircraft_id']
-        for sc_id in item['seat_class']:
-            sc = item['seat_class'][sc_id]
-            quantity = int(sc['quantity'])
-            price = sc['price']
-            air_seat = dao.get_air_seat_class(id, aircraft_id, sc_id)
-            for i in range(quantity):
-                seat = dao.get_seat(air_seat.air_seat_class_id)
-                t = Ticket(customer_id=user.id, flight_id=id, seat_id=seat.id, total_price=price)
-                db.session.add(t)
-                db.session.commit()
+    tmp = []
+    if tickets is not None:
+        for ticket in tickets:
+            item = tickets[ticket]
+            flight_id = item['id']
+            aircraft_id = item['aircraft_id']
+            for sc_id in item['seat_class']:
+                sc = item['seat_class'][sc_id]
+                quantity = int(sc['quantity'])
+                price = sc['price']
+                air_seat = dao.get_air_seat_class(flight_id, aircraft_id, sc_id)
+                for i in range(quantity):
+                    seat = dao.get_seat(air_seat)
+                    t = Ticket(customer_id=user.id, flight_id=flight_id, seat_id=seat.id, total_price=price)
+                    seat.active = 0
+                    tmp.append({
+                        'customer_id': user.id,
+                        'flight_id': flight_id,
+                        'seat_id': seat.id,
+                        'price': price,
+                        'departure_time': item['departure_time'],
+                        'company_name': item['company_name'],
+                        'route_name': item['route_name'],
+                        'aircraft_name': item['aircraft_name'],
+                        'seat_class_name': sc['seat_class_name']
+                    })
+                    db.session.add(t)
+                    db.session.commit()
 
-            del item
-
-    list_ticket = dao.get_ticket_by_user(user.id)
-
+    if tickets is not None:
+        del session['tickets']
     return jsonify({
-        "list_ticket": list_ticket
+        'list_ticket': tmp
     })
+
+
+@app.route('/user/ticket', methods=['get'])
+def get_ticket():
+    return render_template('client/ticket.html')
 
 
 @login.user_loader
@@ -230,8 +268,10 @@ def get_user(user_id):
 @app.context_processor
 def common_response():
     tickets = session.get('tickets')
+
     if tickets is None:
         tickets = {}
+    print(utils.total_cost(tickets)['total_price'])
     return {
         'airports': dao.get_all_airport(),
         'seat_classes': dao.get_seat_class(),

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="OU-icon" href="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png">
     <title>Đăng Ký tài khoản</title>
 
     <style>
@@ -109,8 +110,25 @@
         font-size: 30px;
     }
 
-    .button:hover{
-        background-color: #2da9fc;
+    .register-btn{
+        width: 120px;
+        height: 60px;
+        font-size: 24px;
+        background-color: #024B80;
+        font-family: font-family: 'Oswald', sans-serif;
+        border-radius: 15px;
+        border: none;
+        transition: all 0.3s ease-in;
+        color: #fff;
+    }
+
+    .register-btn{
+        background-color: #024B80;
+        cursor: pointer;
+    }
+
+    .register-btn:hover{
+        background-color: #003760;
     }
     
 
@@ -125,6 +143,7 @@
         margin-top: 30px;
         color: #777;
     }
+
 
     </style>
 </head>
@@ -141,29 +160,29 @@
         <form action="" class="register-Form" method="post" enctype="multipart/form-data">
             <div class="first-last-name">
                 <div>
-                    <label for="">First name</label><br>
+                    <label for="">Họ</label><br>
                     <input type="text" name="firstname">
                 </div>
                 <div>
-                    <label for="">Last name</label><br>
+                    <label for="">Tên</label><br>
                     <input type="text" name="lastname">
                 </div>
             </div>
             <div class="user-name">
                 <div>
-                    <label for="">User name</label><br>
+                    <label for="">Tên đăng nhập</label><br>
                     <input type="text" name="username">
                 </div>
             </div>
 
             <div class="birtday-gender">
                 <div>
-                    <label for="">Birtday</label><br>
+                    <label for="">Ngày sinh</label><br>
                     <input type="date" name="dateOfBirth">
                 </div>
                 <div class="gender">
-                    <p><input type="radio" name="gender" value="Male" checked>Male</p>
-                    <p><input type="radio" name="gender" value="Female">Female</p>
+                    <p><input type="radio" name="gender" value="Nam" checked>Nam</p>
+                    <p><input type="radio" name="gender" value="Nữ">Nữ</p>
                 </div>
             </div>
 
@@ -174,20 +193,20 @@
                 </div>
 
                 <div>
-                    <label for="">Phone number</label><br>
+                    <label for="">Số điện thoại</label><br>
                     <input type="text" name="phone_number">
                 </div>
 
             </div>
             <div class="pass-button">
                 <div>
-                    <label for="">Password</label><br>
+                    <label for="">Mật khẩu</label><br>
                     <input type="password" name="password"><br>
-                    <label for="">Password again</label><br>
+                    <label for="">Xác nhận mật khẩu</label><br>
                     <input type="password" name="confirm_password">
                 </div>
-                <div class="button">
-                    <button type="submit">Dang ky</button>
+                <div>
+                    <button class="register-btn" type="submit">Đăng ký</button>
                 </div>
             </div>
             <a href="/" style="color: #777; font-size: 17px; line-height: 30px;">Quay lại</a>

@@ -66,14 +66,14 @@ function scrollFunction() {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     document.getElementById("navbar").style.padding = "0px 0px";
     document.getElementById("logo").style.width = "60px";
-    document.getElementById("avata").style.width = "40px";
-    document.getElementById("avata").style.height = "40px";
-    document.getElementById("avata").style.marginTop = "0px";
+    document.getElementById("avatar").style.width = "40px";
+    document.getElementById("avatar").style.height = "40px";
+    document.getElementById("avatar").style.marginTop = "0px";
   } else {
     document.getElementById("navbar").style.padding = "20px 10px";
     document.getElementById("logo").style.width = "100px";
-    document.getElementById("avata").style.width = "60px";
-    document.getElementById("avata").style.height = "60px";
-    document.getElementById("avata").style.marginTop = "-7px";
+    document.getElementById("avatar").style.width = "60px";
+    document.getElementById("avatar").style.height = "60px";
+    document.getElementById("avatar").style.marginTop = "-7px";
   }
 }

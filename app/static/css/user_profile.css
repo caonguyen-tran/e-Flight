@@ -186,8 +186,44 @@ th {
 
 /* Thêm thanh cuộn cho danh sách giao dịch */
 .list-transaction{
-    width: auto;
-    max-height: 200px;
+    width: 1000px;
+    height: 200px;
     overflow: auto;
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+.list-transaction::-webkit-scrollbar{
+    width: 8px;
+    visibility: visible;
+}
+
+.list-transaction::-webkit-scrollbar{
+    width: 8px;
+    background-color: var(--backgr-content);
+}
+
+
+.list-transaction::-webkit-scrollbar-thumb{
+    background-color: rgb(115, 115, 115);
+    border-radius: 5px;
+    width: 5px;
+}
+
+td > button{
+    border: none;
+    width: 50px;
+    height: 35px;
+    background-color: #005FA6;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.3s ease-in;
+}
+
+td{
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+td > button:hover{
+    cursor: pointer;
+    background-color: #003760;
 }

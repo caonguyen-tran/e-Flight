@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thông tin vé</title>
-<link rel="stylesheet" href="./css/main.css">
-<link rel="stylesheet" href="./css/base.css">
+{% extends 'client/base.html' %}
+
+{% block title %}
+<title>Đặt vé</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
 <!-- font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+{% endblock %}
 
-</head>
+{% block content %}
 <body>
     <div class="login-container" >
         <h1>THÔNG TIN VÉ</h1>
@@ -21,13 +20,13 @@
     
             <div class="label-ticket">
                 <div class="label-ou">
-                    <img class="label-ou-logo" src="./img/LOGO2.png" alt="logo">
+                    <img class="label-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
                     <label class="label-ou-name">AIRPORT</label>
                 </div>
                 <h2 class="label-type-ticket">Thương Gia</h2>
                 <div>
                     <div class="label-ou">
-                        <img class="label-ou-logo" src="./img/LOGO2.png" alt="logo">
+                        <img class="label-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
                         <label class="label-ou-name">AIRPORT</label>
                     </div>
                 </div>
@@ -121,13 +120,13 @@
             </div>
             <div class="footer-ticket">
                 <div class="footer-ou">
-                    <img class="footer-ou-logo" src="./img/LOGO2.png" alt="logo">
+                    <img class="footer-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
                     <label class="footer-ou-name">AIRPORT</label>
                 </div>
                 <h5 class="footer-name-ticket">THẺ LÊN MÁY BAY</h5>
                 <div>
                     <div class="footer-ou">
-                        <img class="footer-ou-logo" src="./img/LOGO2.png" alt="logo">
+                        <img class="footer-ou-logo" src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
                         <label class="footer-ou-name">AIRPORT</label>
                     </div>
                 </div>
@@ -135,12 +134,4 @@
 
                 
     </div>
-            
-    
-    <footer>
-        Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM
-    </footer>
-</div>
-<script src="main.js"></script>
-</body>
-</html>
+{% endblock %}

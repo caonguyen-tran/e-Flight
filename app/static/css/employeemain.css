@@ -6,29 +6,12 @@ body, html {
     
 }
 
-body::-webkit-scrollbar{
-    width: 8px;
-    visibility: visible;
-}
-
-body::-webkit-scrollbar{
-    width: 8px;
-    background-color: var(--backgr-content);
-}
-
-
-body::-webkit-scrollbar-thumb{
-    background-color: rgb(115, 115, 115);
-    border-radius: 5px;
-    width: 5px;
-}
-
 /* TAB CONTROL */
 .tab-control-main{
     width: 80%;
     display: flex;
     justify-content: space-around   ;
-    padding: 10px;
+    padding-bottom:10px;
 }
 
 .tabcontent {
@@ -403,19 +386,18 @@ footer {
     width: 50%;
 }
 .from-select-route{
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0px 0px 0px;
 }
 .fight-control{
     display: flex;
     justify-content: left;
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0px 0px 0px;
 
 }
 .fight-control div{
     margin-right: 30px;
 }
 .select-route-option {
-    /* position: absolute; */
     line-height: 52px;
     border: none;
     outline: none;
@@ -433,8 +415,8 @@ footer {
     width: 90%;
     margin: auto;
     display: flex;
-    justify-content: left;
-    padding: 20px 0px 20px 0px ;
+    justify-content: center;
+    padding: 20px 0px 15px 0px ;
 
     
 }
@@ -460,32 +442,25 @@ body:focus{
 .fight-control div select,input{
     font-size: 16px;
 }
+
 .from-intermediate-airport{
     width: 90%;
+    height: 30px;
     margin: auto;
     display: flex;
-    justify-content: left;
-    padding-top: 20px;
-    
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
+
 .from-intermediate-airport select{
     font-size: 16px;
     border: 2px solid rgb(0, 148, 255);
     border-radius: 5px;
-    width: 40%;
-}
-
-.create-fight-from{
-    width: 90%;
-    margin: auto;
-    padding: 20px 0px 20px 0px;
-    position: relative;
-    height: 100px;
+    width: 200px;
 }
 
 .create-fight-from button{
-    position: absolute;
-    display: block;
     right: 100px;
     top: 50px;
     width: 200px;
@@ -555,20 +530,7 @@ body:focus{
     margin: 15px 20px 15px 20px ;
 
 }
-.ticket-detail-info-qr{
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border: 1px solid var(--border-color);
-    margin: auto;
-}
-.ticket-detail-info-qr{
-    display: flex;
-    margin: 0px 6px 0px 20px;
-}
-.ticket-detail-info-qr-lb{
-    margin: 20px 20px 20px 0px;
-}
+
 .border-left-dashed {
     border-left: 1px dashed black; /* Đặt viền trái là gạch đứt màu đen với độ dày 2px */
 }
@@ -609,3 +571,24 @@ body:focus{
     
 }
 
+
+.btn-create-fight{
+    width: 200px;
+    height: 40px;
+    margin: 0px 8px;
+}
+
+.from-intermediate-airport{
+    padding: 20px 0px;
+    flex-direction: row-reverse;
+}
+
+.load-flight{
+    width: 40px;
+    height: 40px;
+}
+.fight-control{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}

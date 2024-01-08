@@ -23,7 +23,7 @@ function addFlightToCart(id, company_name,route_name ,aircraft_name,
     })
     .then(function(result){
         tickets = result['tickets']
-        costs = result['total_cost']
+        costs = result['total_cost']['total_price']
         loadTicket(tickets, costs)
     })
  }
@@ -37,7 +37,7 @@ function removeFlight(flight_id, sc_id){
    })
    .then(function(result){
        tickets = result['tickets']
-       costs = result['total_cost']
+       costs = result['total_cost']['total_price']
        loadTicket(tickets, costs)
    })
 }
@@ -98,17 +98,35 @@ function loadTicket(tickets, costs){
         }
     }
     var text_price = document.getElementById('text-price')
-    text_price.innerHTML = costs['total_price']
+    var flight_items = document.getElementsByClassName('flight-item')
+    console.log(flight_items.length)
+    if(flight_items.length == 0){
+        var text_none = document.createElement("div")
+        text_none.innerHTML = `
+            <p>Ban chua co ve nao :((</p>
+        `
+        parentDiv.appendChild(text_none)
+        text_price.innerHTML = "0đ"
+    }
+    else{
+        text_price.innerHTML = `${costs}đ`
+    }
  }
 
 function pay(){
     fetch("/api/pay", {
         method: "post"
     })
-    then(function(response){
-        return response
+    .then(function(response){
+        return response.json()
     })
     .then(function(result){
         console.log(result)
+        if(result['list_ticket'].length == 0){
+            alert("Ban chua dat ve!")
+        }
+        else{
+            alert("Dat ve thanh cong!")
+        }
     })
 }

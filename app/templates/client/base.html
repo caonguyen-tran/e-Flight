@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="OU-icon" href="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png">
     {% block title %}
     <title></title>
     {% endblock %}
@@ -17,18 +18,18 @@
         <div class="navigation-header">
             <a href="/">Đặt vé</a>
             <a href="/">Trợ giúp</a>
-            <a href="/">About us</a>
+            <a href="/">Về chúng tôi</a>
         </div>
         {% if current_user.is_authenticated%}
         <div class="bt-login-register-logout">
             <a href="/user/user_profile"><img src="{{current_user.avatar}}" id="avatar"
                                               alt="avatar"></a>
-            <a href="/user/logout">Log out</a>
+            <a href="/user/logout">Đăng xuất</a>
         </div>
         {%else%}
         <div class="bt-login-register-logout">
-            <a href="/user/register">Sign up</a>
-            <a href="/user/login">Login</a>
+            <a href="/user/register">Đăng ký</a>
+            <a href="/user/login">Đăng nhập</a>
         </div>
         {% endif%}
 

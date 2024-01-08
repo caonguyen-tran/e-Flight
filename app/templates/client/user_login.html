@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng nhập</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="shortcut icon" type="OU-icon" href="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png">
 
 <!-- font -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
 <style>
     body, html {
@@ -61,7 +62,7 @@
 
 .login-content {
     background: white;
-    padding: 50px;
+    padding: 50px 50px 40px 50px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px;
@@ -152,6 +153,32 @@ footer {
 #close-btn:hover {
         color: #e5e5e5; /* Màu chữ khi di chuột vào nút đóng */
 }
+
+.custome-buttons {
+    height: 45px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.custome-buttons > button{
+    padding: 15px 20px;
+    background-color: #007bff;
+    font-size: 14px;
+}
+
+.custome-buttons > a {
+    padding: 14px 28px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #007bff;
+    font-size: 14px;
+}
+
+.text-forgot{
+    margin-top: -5px;
+}
 </style>
 </head>
 <body>
@@ -159,14 +186,14 @@ footer {
     {% if err_msg%}
     <div id="error-container">
         <p>
-            Incorrect password. Please try again.
+            Mật khẩu không chính xác! Vui lòng thử lại
             <span id="close-btn" onclick="closeError()">X</span>
         </p>
     </div>
     {% endif%}
     <div class="login-container" >
         <div class="login-content">
-            <h2>Wellcome</h2>
+            <h2 style="height: 60px; font-size: 32px">Đăng nhập</h2>
             <form action="/user/login" id="loginForm" method="post">
                 <div class="input-group">
                     <input type="text" placeholder="Nhập tài khoản" name="username" required>
@@ -183,8 +210,8 @@ footer {
                     </span>
                 </div>
                 <div class="custome-buttons">
-                    <a href="/user/register">Dang ky</a>
-                    <button type="submit">Dang nhap</button>
+                    <a href="/user/register">Đăng ký</a>
+                    <button type="submit">Đăng nhập</button>
                 </div>            
                 <div  class="text-forgot">
                     <a href="/" style="color: #777; font-size: 17px; line-height: 30px; margin-right: 200px;">Quay lại</a>
