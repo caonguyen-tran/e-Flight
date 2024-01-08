@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập hệ thống POS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employeemain.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/employeebase.css')}}">
+    <link rel="shortcut icon" type="OU-icon" href="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png">
+
+    <!-- font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+</head>
+<body>
+{% if err_msg %}
+<div class="alert alert-danger">
+    {{ err_msg }}
+</div>
+{% endif %}
+<div class="login-container">
+    <div class="login-content">
+        <h2>Nhân Viên Đăng Nhập</h2>
+        <form method="post" id="loginForm" action="" enctype="multipart/form-data">
+            <div class="input-group">
+                <input name="username" type="text" placeholder="Nhập tài khoản" required>
+                <span class="username-icon">
+                    <i class='bx bx-user'></i>
+                </span>
+            </div>
+            <div class="input-group">
+                <input name="password" class="" id="password" type="password" placeholder="Nhập mật khẩu" required>
+                <!-- icon -->
+                <span type="button" id="togglePassword" class="toggle-password show-pass-icon">
+                    <i id="toggleIcon" class="fas fa-eye-slash"></i>
+                </span>
+                <span class="password-icon">
+                    <i class="bx bx-key"></i>
+                </span>
+            </div>
+            <button class="width-100" type="submit" style="height: 45px;">Đăng nhập</button>
+            <div class="text-forgot">
+                <a style="color: black" class="" href="#" id="forgotPassword">Bạn quên mật khẩu?</a>
+            </div>
+        </form>
+
+        <footer>
+            Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM
+        </footer>
+    </div>
+    <script src="{{url_for('static', filename='javascript/main.js')}}"></script>
+</body>
+</html>

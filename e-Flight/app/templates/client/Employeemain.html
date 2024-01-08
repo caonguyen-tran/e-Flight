@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập hệ thống POS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employeemain.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employeebase.css') }}">
+    <link rel="shortcut icon" type="OU-icon"
+          href="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png">
+
+    <!-- font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="https://kit.fontawesome.com/dd307a4d09.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="main-container">
+<div class="header-main">
+    <h1>Xin chào {{current_user.username}}</h1>
+</div>
+<!-- Các nút ở phía trên cùng của trang -->
+<div class="tab-control-main">
+    <button class="tablink" onclick="openTab(event, 'Search')">Tìm kiếm chuyến</button>
+    <button class="tablink" onclick="openTab(event, 'CreateFlight')">Tạo chuyến bay</button>
+</div>
+<!-- MAIN CHỨC NĂNG TÌM KIẾM CHUYẾN BAY -->
+<div id="Search" class="search-main tabcontent">
+    <form id="search-submit" action="/employee/search_flights" method="get">
+        <div class="from-to-seat">
+            <!-- điểm đi -->
+            <div class="select-costom">
+                <label class="from-to-seat-label">From</label><br>
+                <div>
+                    <i class="fa-solid fa-plane-departure icon-costom"></i>
+                    <select id="from" class="select-costom-chose" name="from">
+                        {%for airport in airports%}
+                        <option value="{{airport.id}}">{{airport.locate}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+
+            <i class="fa-solid fa-plane"></i>
+            <!-- điểm đến -->
+            <div class="select-costom">
+                <label class="from-to-seat-label">To</label><br>
+                <div>
+                    <i class="fa-solid fa-plane-arrival"></i>
+                    <select id="to" class="select-costom-chose" name="to">
+                        {%for airport in airports%}
+                        <option value="{{airport.id}}">{{airport.locate}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="costome-date-seat-button">
+            <div class="item">
+                <label for="">Chọn Ngày:</label><br>
+                <input name="dt" type="date" id="departure_date">
+            </div>
+
+            <div class="item">
+                <label for="">Chọn ghế:</label><br>
+                <select name="sc">
+                    {%for sc in seat_classes%}
+                    <option value="{{sc.id}}">{{sc.name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="item">
+                <label for="">Nhập số lượng:</label><br>
+                <input type="number" name="" min="1" value="1">
+            </div>
+
+            <div class="find-from">
+                <button type="button" onclick="checkAirport()" class="btn-find">Tìm chuyến bay</button>
+            </div>
+        </div>
+    </form>
+    <div class="list">
+        <table>
+            <thead>
+            <tr>
+                <th>Mã chuyến bay</th>
+                <th>Tuyến bay</th>
+                <th>Máy bay</th>
+                <th>Hãng</th>
+                <th>Hạng ghế</th>
+                <th>Giá vé</th>
+                <th>Chọn</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for flight in flights%}
+            <tr>
+                <td>{{flight.id}}</td>
+                <td>{{route_name}}</td>
+                <td>{{flight.aircraft_name}}</td>
+                <td>{{flight.company_name}}</td>
+                <td>{{flight.seat_class}}</td>
+                <td>{{flight.price}}</td>
+                <td>
+                    <button>Chọn</button>
+                </td>
+            </tr>
+            {% endfor %}
+            <!-- Thêm các dòng dữ liệu khác tương tự ở đây -->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<!-- MAIN CHỨC NĂNG LẬP LỊCH CHUYẾN BAY -->
+<div id="CreateFlight" class="search-main tabcontent">
+    <form id="form-submit" action="/employee/api/add_flight" method="post" enctype="multipart/form-data">
+        <div class="from-select-route width-90-mg-auto">
+            <label class="font-lb-18" for="route">Chọn tuyến:</label>
+            <select style="font-size: 16px;" class=" select-route-option" id="route" name="route">
+                {%for route in routes%}
+                <option value="{{route.id}}" name="route">{{route.name}}</option>
+                {%endfor%}
+                <!-- Thêm các tuyến khác vào đây -->
+            </select>
+        </div>
+        <div class="fight-control width-90-mg-auto font-lb-18">
+            <div>
+                <label for="aircraft">Chọn máy bay:</label>
+                <select id="aircraft" name="aircraft">
+                    {%for aircraft in list_aircrafts%}
+                    <option value="{{aircraft.id}}" name="aircraft">{{aircraft.name}}</option>
+                    {%endfor%}
+                    <!-- Thêm các loại máy bay khác vào đây -->
+                </select>
+            </div>
+
+            <div>
+                <label for="date">Ngày, giờ bay:</label>
+                <input type="datetime-local" id="date" name="date">
+            </div>
+            <div>
+                <label for="time">Thời gian bay:</label>
+                <input type="number" id="time" name="time">
+            </div>
+            <div>
+                <label for="name">Tên chuyến bay:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div>
+                <a href="/employee" style="background-color: #2da9fc; padding: 10px ;border-radius: 5px"><i class="fa-solid fa-rotate-right"></i></a>
+            </div>
+        </div>
+
+        <div class="from-intermediate-airport font-lb-18">
+            <div style="display: flex;">
+                <button class="btn-create-fight" id="btn-edit" style="background-color: rgb(33, 160, 33);">Chỉnh sửa
+                    xong
+                </button>
+                <button type="button" class="btn-create-fight" id="btn-cancel"
+                        style="background-color: rgb(255, 76, 76);" onclick="btncancel()">Hủy
+                </button>
+                <button type="button" class="btn-create-fight" id="btn-create" onclick="checkValidate()">Tạo</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- <form action=""> -->
+    <div class="list" style="height: 300px;">
+        <table>
+            <thead>
+            <tr>
+                <th>Mã chuyến</th>
+                <th>Tên chuyến bay</th>
+                <th>Tuyến bay</th>
+                <th>Mã máy bay</th>
+                <th>Thời gian khởi hành</th>
+                <th>Ngày được tạo</th>
+                <th>Thời gian bay</th>
+                <th>Nhân viên quản lý</th>
+                <th>Chỉnh sửa</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for item in all_flights%}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.route_id}}</td>
+                <td>{{item.aircraft_id}}</td>
+                <td>{{item.departure_time.day}}/{{item.departure_time.month}}/{{item.departure_time.year}}
+                    {{item.departure_time.hour}}:{{item.departure_time.minute}}
+                </td>
+                <td>{{item.created_date.day}}/{{item.created_date.month}}/{{item.created_date.year}}
+                    {{item.created_date.hour}}:{{item.created_date.minute}}
+                </td>
+                <td>{{item.arrival_time}}</td>
+                <td>{{item.emp_id}}</td>
+                <td>
+                    <button href="/" onclick="hidebtncreate()"><i class="fa-solid fa-pen-to-square"></i></button>
+                </td>
+            </tr>
+            {%endfor%}
+            <!-- Thêm các dòng dữ liệu khác tương tự ở đây -->
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        Phần mềm quản lý chuyến bay © 2024 Code bởi MEN TEAM
+    </footer>
+
+</div>
+<script src="{{ url_for('static', filename='javascript/main.js') }}"></script>
+<script>
+    // Hàm để mở một tab nội dung cụ thể
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+
+
+      // Ẩn tất cả nội dung của các tab
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Xóa bỏ màu nền của tất cả các tablinks/nút
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Hiển thị nội dung cụ thể của tab và thêm class "active" vào nút đã mở tab
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Lấy phần tử với id="defaultOpen" và click vào nó
+    // Điều này sẽ mở tab đầu tiên mặc định
+    document.getElementsByClassName("tablink")[0].click();
+
+    document.getElementById('departure_date').valueAsDate = new Date()
+
+    function checkAirport(){
+        locate_from = document.getElementById('from').value
+        locate_to = document.getElementById('to').value
+        console.log(locate_from, locate_to)
+        if(locate_from == locate_to){
+            alert('Vui long nhap dung diem den va diem di')
+        }
+        else{
+            document.getElementById('search-submit').submit()
+        }
+    }
+
+    function showform(){
+        let form = document.getElementById('form-payment');
+        form.style.display = 'block';
+        showformname();
+    }
+
+    function hideform(){
+        let form = document.getElementById('form-payment');
+        form.style.display = 'none';
+        hideforminfor();
+        hideformname();
+    }
+
+    function showin_hiname(){
+        let form = document.getElementById('form-infor');
+        form.style.display = 'block';
+        hideformname();
+    }
+
+    function showformname(){
+        let form = document.getElementById('form-name');
+        form.style.display = 'block';
+    }
+
+    function hideformname(){
+        let formname = document.getElementById('form-name');
+        formname.style.display = 'none';
+    }
+
+    function hideforminfor(){
+        let form = document.getElementById('form-infor');
+        form.style.display = 'none';
+    }
+    /* xử lý nut khi chọn edit */
+    function hidebtncreate(){
+        let btn = document.getElementById('btn-create');
+        btn.style.display = 'none';
+
+        let btncan = document.getElementById('btn-cancel');
+        btncan.style.display = 'block';
+
+        let btnedit = document.getElementById('btn-edit');
+        btnedit.style.display = 'block';
+    }
+
+    function btncancel(){
+        let btn = document.getElementById('btn-create');
+        btn.style.display = 'block'
+
+        let btncan = document.getElementById('btn-cancel');
+        btncan.style.display = 'none';
+
+        let btnedit = document.getElementById('btn-edit');
+        btnedit.style.display = 'none';
+    }
+
+    function checkValidate(){
+        date = document.getElementById('date').value
+        time = document.getElementById('time').value
+        name = document.getElementById('name').value
+        if(time == "" || name=="" || !date ){
+            alert('Vui long nhap day du thong tin!')
+        }
+        else{
+            document.getElementById("form-submit").submit()
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
