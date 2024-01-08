@@ -49,7 +49,6 @@ def get_flights(locate_from, locate_to, date, seat_class):
         .join(Company, Aircraft.company_id == Company.id) \
         .join(AirSeatClass, AirSeatClass.aircraft_id == Aircraft.id) \
         .join(SeatClass, SeatClass.id == AirSeatClass.seat_class_id) \
-        .join(Seat, Seat.air_seat_class_id == AirSeatClass.id) \
         .filter(Route.airport_from_id.__eq__(locate_from)) \
         .filter(Route.airport_to_id.__eq__(locate_to)) \
         .filter(AirSeatClass.seat_class_id == seat_class) \
@@ -132,7 +131,7 @@ def get_info_ticket_user(user_id):
         .join(Flight, Flight.id.__eq__(Ticket.flight_id)) \
         .join(AirSeatClass, AirSeatClass.id.__eq__(Seat.air_seat_class_id)) \
         .join(SeatClass, SeatClass.id.__eq__(AirSeatClass.seat_class_id)) \
-        .join(Aircraft, Aircraft.id.__eq__(Flight.id)) \
+        .join(Aircraft, Aircraft.id.__eq__(Flight.aircraft_id)) \
         .join(Company, Company.id.__eq__(Aircraft.company_id)) \
         .join(Route, Route.id.__eq__(Flight.route_id)) \
         .filter(User.id.__eq__(user_id)).all()
@@ -175,19 +174,24 @@ def create_flight(emp_id, route_id, aircraft_id, name, departure_time, arrival_t
     db.session.commit()
 
 
-def revenue_stats(year):
-    query = db.session.query(Route.id, func.extract('month', Flight.created_date).label('flight_month'),
+# def revenue_stats(year):
+#     query = db.session.query(Route.id, Route.name, func.extract('month', Flight.created_date).label('flight_month'),
+#                              func.sum(Ticket.total_price).label('total_price')) \
+#         .join(Route, Route.id.__eq__(Flight.route_id)) \
+#         .join(Ticket, Ticket.flight_id.__eq__(Flight.id)) \
+#         .filter(func.extract('year', Flight.created_date).__eq__(year)) \
+#         .group_by(Route.id, func.extract('month', Flight.created_date))
+#
+#     return query.all()
+
+
+def revenue_month_stats(year, month=1):
+    query = db.session.query(Route.id, Route.name, func.extract('month', Flight.created_date).label('flight_month'),
                              func.sum(Ticket.total_price).label('total_price')) \
         .join(Route, Route.id.__eq__(Flight.route_id)) \
         .join(Ticket, Ticket.flight_id.__eq__(Flight.id)) \
         .filter(func.extract('year', Flight.created_date).__eq__(year)) \
+        .filter(func.extract('month', Flight.created_date).__eq__(month))\
         .group_by(Route.id, func.extract('month', Flight.created_date))
 
     return query.all()
-
-
-def revenue_month_stats(route, month):
-    stats = revenue_stats(2024)
-    query = stats.filter(Route.id.__eq__(route)).filter(stats.flight_month.__eq__(month)).first()
-
-    return query

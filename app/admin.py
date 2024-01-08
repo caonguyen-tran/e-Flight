@@ -4,8 +4,9 @@ from app import app, db
 from app.models import User, Aircraft, Airport, Company, AirSeatClass, \
     Flight, Route, Stopover, Seat, SeatClass, Ticket, Role
 from flask_login import login_user, current_user, logout_user, login_required
-from flask import redirect, render_template
+from flask import redirect, render_template, request
 import dao
+
 admin = Admin(app=app, name='ADMIN PAGE', template_mode='bootstrap4')
 
 
@@ -88,8 +89,8 @@ class LogoutView(AuthenticatedUser):
 class StatsView(AuthenticatedAdmin):
     @expose('/')
     def index(self):
-        stats = dao.revenue_stats(2024)
-        return self.render('/admin/stats.html', stats=stats)
+        kw = request.args.get('month')
+        return self.render('/admin/stats.html', stats=dao.revenue_month_stats(2024, 1))
 
 
 admin.add_view(RouteView(Route, db.session))

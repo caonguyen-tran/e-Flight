@@ -99,11 +99,10 @@ function loadTicket(tickets, costs){
     }
     var text_price = document.getElementById('text-price')
     var flight_items = document.getElementsByClassName('flight-item')
-    console.log(flight_items.length)
-    if(flight_items.length == 0){
+    if(costs == 0){
         var text_none = document.createElement("div")
         text_none.innerHTML = `
-            <p>Ban chua co ve nao :((</p>
+            <p>Hãy nhìn vào nút CHỌN màu xanh ở bên trái và click</p>
         `
         parentDiv.appendChild(text_none)
         text_price.innerHTML = "0đ"
@@ -121,7 +120,6 @@ function pay(){
         return response.json()
     })
     .then(function(result){
-        console.log(result)
         if(result['list_ticket'].length == 0){
             alert("Ban chua dat ve!")
         }
