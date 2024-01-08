@@ -10,17 +10,16 @@
 <style scoped="scoped" onload="loadTicket({{tickets}}, {{total_price}})"></style>
 <div id="centeredDiv" class="form-search">
     <div class="form-costome">
-
-        <form action="#">
+        <form id="form-submit" action="/flights" method="get">
             <div class="costome-select-flight">
                 <label for="">Nơi xuất phát:</label>
-                <select name="from">
+                <select name="from" id="locate-from">
                     {%for airport in airports%}
                     <option value="{{airport.id}}">{{airport.locate}}</option>
                     {%endfor%}
                 </select>
                 <label for="">Nơi đến:</label>
-                <select name="to">
+                <select name="to" id="locate-to">
                     {%for airport in airports%}
                     <option value="{{airport.id}}">{{airport.locate}}</option>
                     {%endfor%}
@@ -30,7 +29,7 @@
             <div class="costome_count_ticket">
                 <div class="costome_items">
                     <label for="">Chọn ngày đi:</label>
-                    <input type="date" name="dt">
+                    <input type="date" name="dt" id="departure">
                 </div>
             </div>
 
@@ -50,13 +49,11 @@
                 </div>
             </div>
 
-            <div>
-                <a href="" id="hideButton">Huy</a>
-                <button type="button"> Tim chuyen bay</button>
+            <div class="option-div">
+                <button id="hideButton" onclick="hideForm()" type="button">Hủy</button>
+                <button id="search-btn" type="button" onclick="checkAirport()"><i class="fas fa-search"></i></button>
             </div>
         </form>
-
-
     </div>
 </div>
 
@@ -162,6 +159,7 @@
 </div>
 <script src="{{url_for('static', filename='javascript/flight.js')}}"></script>
 <script>
+    document.getElementById('departure').valueAsDate = new Date()
     // Lấy đối tượng canvas
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
@@ -207,10 +205,10 @@
   });
 
   // Thêm sự kiện click cho nút ẩn div
-  hideButton.addEventListener('click', function() {
+  function hideForm(){
     document.body.style.overflow = 'auto';
     centeredDiv.style.display = 'none';
-  });
+  }
 
 //   hàm cuộn lên đầu trang
   function scrollToTop() {
@@ -220,7 +218,17 @@
     });
   }
 
-
+    function checkAirport(){
+        locate_from = document.getElementById('locate-from').value
+        locate_to = document.getElementById('locate-to').value
+        console.log(locate_from, locate_to)
+        if(locate_from == locate_to){
+            alert('Vui long nhap dung diem den va diem di')
+        }
+        else{
+            document.getElementById('form-submit').submit()
+        }
+    }
 
 
 </script>

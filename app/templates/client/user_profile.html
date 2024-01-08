@@ -1,16 +1,138 @@
 {% extends 'client/base.html' %}
-
 {% block title %}
 <title>Khách hàng Profile</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 <link href="{{ url_for('static', filename='css/user_profile.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block content %}
 
+<div class="container-showticket" id="showticket">
+    <div id="ticket-form"><button id="hide-ticket" onclick="unlock()">X</button>
+        <div class="label-ticket">
+            <div class="label-ou">
+                <img class="label-ou-logo"
+                     src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                <label class="label-ou-name">AIRPORT</label>
+            </div>
+            <h2 class="label-type-ticket">Thương Gia</h2>
+            <div>
+                <div class="label-ou">
+                    <img class="label-ou-logo"
+                         src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                    <label class="label-ou-name">AIRPORT</label>
+                </div>
+            </div>
+        </div>
+        <div class="info-ticket">
+            <div class="ticket-detail">
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">HÃNG CHUYÊN CHỠ/CARRER</span>
+                    <span class="ticket-detail-info-value">VIETNAM AIRLINER</span>
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">HỌ VÀ TÊN/NAME</span>
+                    <span class="ticket-detail-info-value">TRẦN CAO NGUYÊN</span>
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">NƠI ĐI/FROM</span>
+                    <span class="ticket-detail-info-value">CATBI TAY NGUYÊN</span>
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">NƠI ĐẾN/TO</span>
+                    <span class="ticket-detail-info-value">TP. HO CHI MINH</span>
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">GHI CHÚ</span>
+                    <span class="ticket-detail-info-value">TKNE    762763174112370123</span>
+
+                </div>
+            </div>
+            <div class="ticket-detail">
+                <div class="ticket-detail-info-qr">
+                    <img src="https://cf.shopee.vn/file/a5e589e8e118e937dc660f224b9a1472" alt="QR Dowload"
+                         class="ticket-detail-info-qr">
+                    <span class="ticket-detail-info-qr-lb">QR CODE</span>
+
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">CHUYẾN BAY/FIGHT</span>
+                    <span class="ticket-detail-info-value">VN234</span>
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">GHẾ/SEAT</span>
+                    <span class="ticket-detail-info-value">16C</span>
+
+                </div>
+
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">NGÀY BAY</span>
+                    <span style="padding-bottom: 5px;" class="ticket-detail-info-value">8/1/2024</span>
+
+                    <span class="ticket-detail-info-title">GIỜ BAY</span>
+                    <span class="ticket-detail-info-value">14:20</span>
+                </div>
+
+            </div>
+            <div class="ticket-detail border-left-dashed">
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">TKNE 762763174112370123</span>
+                    <span class="ticket-detail-info-value">FR: CATBI TAY NGUYÊN</span>
+                    <span class="ticket-detail-info-value">TO: TP. HO CHI MINH</span>
+
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">HỌ VÀ TÊN/NAME</span>
+                    <span class="ticket-detail-info-value">TRẦN CAO NGUYÊN</span>
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">CHUYẾN BAY/FIGHT</span>
+                    <span class="ticket-detail-info-value">VN234</span>
+
+                </div>
+                <div class="ticket-detail-info-1">
+                    <span class="ticket-detail-info-title">GHẾ/SEAT</span>
+                    <span style="padding-bottom: 5px;" class="ticket-detail-info-value">16C</span>
+                    <span class="ticket-detail-info-title">NGÀY BAY</span>
+                    <span style="padding-bottom: 5px;" class="ticket-detail-info-value">
+                                8/1/2024</span>
+                    <span class="ticket-detail-info-title">GIỜ BAY</span>
+                    <span class="ticket-detail-info-value">14:20</span>
+
+                </div>
+            </div>
+    </div>
+        <div class="footer-ticket">
+            <div class="footer-ou">
+                <img class="footer-ou-logo"
+                     src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                <label class="footer-ou-name">AIRPORT</label>
+            </div>
+            <h5 class="footer-name-ticket">THẺ LÊN MÁY BAY</h5>
+            <div>
+                <div class="footer-ou">
+                    <img class="footer-ou-logo"
+                         src="https://res.cloudinary.com/dndakokcz/image/upload/v1704522582/LOGO_l4zgkg.png" alt="logo">
+                    <label class="footer-ou-name">AIRPORT</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
 <div class="profile-container">
     <div class="profile-info">
         <h1>Thông tin của bạn</h1>
-
         <table>
             <tr>
                 <th>Tên:</th>
@@ -56,16 +178,22 @@
                 {%for ticket_item in list_tickets%}
                 <tr>
                     <td>{{ticket_item.ticket_id}}</td>
-                    <td>{{ticket_item.ticket_date.day}}/{{ticket_item.ticket_date.month}}/{{ticket_item.ticket_date.year}}</td>
+                    <td>
+                        {{ticket_item.ticket_date.day}}/{{ticket_item.ticket_date.month}}/{{ticket_item.ticket_date.year}}
+                    </td>
                     <td>{{ticket_item.route_name}}</td>
                     <td>{{ticket_item.flight_id}}</td>
                     <td>{{ticket_item.aircraft_name}}</td>
                     <td>{{ticket_item.company_name}}</td>
                     <td>{{ticket_item.seat_id}}</td>
                     <td>{{ticket_item.seat_class_name}}</td>
-                    <td>{{ticket_item.departure_time.day}}/{{ticket_item.departure_time.month}}/{{ticket_item.departure_time.year}}</td>
+                    <td>
+                        {{ticket_item.departure_time.day}}/{{ticket_item.departure_time.month}}/{{ticket_item.departure_time.year}}
+                    </td>
                     <td>{{ticket_item.departure_time.hour}}:{{ticket_item.departure_time.minute}}</td>
-                    <td><button class="">Xem</button></td>
+                    <td>
+                        <button type="button" onclick="scrollToTop()">Xem</button>
+                    </td>
                 </tr>
                 {%endfor%}
             </table>
@@ -135,7 +263,9 @@
         </div>
     </div>
 
+
 </div>
+
 
 <script>
     function openEditModal() {
@@ -145,8 +275,9 @@
     function closeEditModal() {
         document.getElementById("editModal").style.display = "none";
     }
-    document.getElementById(editDOB).valueAsDate = new Date()
-    fucntion checkValidate(){
+
+    function checkValidate(){
+        document.getElementById(editDOB).valueAsDate = new Date()
         var firstname = document.getElementById('editFirstname').value
         var lastname = document.getElementById('editLastname').value
         var avatar = document.getElementById('editAvatar')
@@ -224,6 +355,27 @@
 
         hideUploadTextForEdit();
     }
+
+
+</script>
+
+<script>
+    <!--    ham đưa lên đầu trang va khóa thanh trượt-->
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+        document.body.style.overflow = 'hidden';
+
+        let divtic = document.getElementById("showticket");
+        divtic.style.display = "block";
+    }
+
+<!--    nut dong ticket-->
+    function unlock() {
+        document.body.style.overflow = '';
+        let divtic = document.getElementById("showticket");
+        divtic.style.display = "none";
+    }
+
 
 </script>
 {% endblock %}

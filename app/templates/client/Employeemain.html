@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập hệ thống POS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/employeemain.css') }}">
@@ -15,8 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <script src="https://kit.fontawesome.com/dd307a4d09.js" crossorigin="anonymous"></script>
-
-</head>
 <body class="main-container">
 <div class="header-main">
     <h1>Xin chào {{current_user.username}}</h1>
@@ -152,7 +147,8 @@
                 <input type="text" id="name" name="name">
             </div>
             <div>
-                <a href="/employee" style="background-color: #2da9fc; padding: 10px ;border-radius: 5px"><i class="fa-solid fa-rotate-right"></i></a>
+                <a href="/employee" style="background-color: #2da9fc; padding: 10px ;border-radius: 5px"><i
+                        class="fa-solid fa-rotate-right"></i></a>
             </div>
         </div>
 
@@ -317,7 +313,7 @@
         time = document.getElementById('time').value
         name = document.getElementById('name').value
         if(time == "" || name=="" || !date ){
-            alert('Vui long nhap day du thong tin!')
+            customAlert.alert('This is a custom alert with heading.','Heads Up!')
         }
         else{
             document.getElementById("form-submit").submit()
@@ -326,6 +322,8 @@
 
 
 
+
 </script>
+
 </body>
 </html>

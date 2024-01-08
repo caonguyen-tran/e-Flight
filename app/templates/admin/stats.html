@@ -6,6 +6,69 @@
 {% if current_user.is_authenticated %}
 <h1 class="text-center text-info">CHÀO MỪNG ĐẾN TRANG THỐNG KÊ</h1>
 <h2 class="text-info">Chào {{ current_user.username }}!</h2>
+<div class="test">
+
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let mData=[];
+    let mLabels=[];
+
+    {%for s in stats%}
+    mData.push({{s[2]}})
+    mLabels.push({{s[0]}})
+    {%endfor%}
+    window.onload = function() {
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: mLabels,
+        datasets: [{
+          label: '# Doanh thu',
+          data: mData,
+          borderWidth: 1,
+          backgroundColor: ['red', 'green', 'blue', 'gold', 'brown']
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: mLabels,
+        datasets: [{
+          label: '# Doanh thu',
+          data: mData,
+          borderWidth: 1,
+          backgroundColor: ['red', 'green', 'blue', 'gold', 'brown']
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+
+</script>
 {% else %}
 <h1>Khong co phan su </h1>
 {% endif %}

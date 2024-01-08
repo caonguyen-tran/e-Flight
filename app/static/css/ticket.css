@@ -85,6 +85,10 @@ body::-webkit-scrollbar-thumb{
     padding: 15px;
 }
 
+.costome-select-flight > select{
+    font-size: 18px;
+}
+
 #select-flight{
     text-align: center;
     width: 276px;
@@ -112,6 +116,11 @@ body::-webkit-scrollbar-thumb{
     width: auto;
     height: 60px;
     margin: auto 10px;
+}
+
+.costome_items > select{
+    height: 100%;
+    font-size: 24px;
 }
 
 .costome_count_ticket input[type="date"]{
@@ -149,17 +158,40 @@ body::-webkit-scrollbar-thumb{
     border-bottom: solid 2px black;
 }
 
-#hideButton{
-    width: 96px;
-    height: 37px;
-    background-color: gainsboro;
-    font-size: 25px;
-    font-weight: 500;
-    border-radius: 5px;
-    position: absolute;
-    right: 200px;
+.option-div{
+    display:flex;
+    width: 100%;
+    height: 100px;
+    justify-content: flex-end;
+    align-items: center;
 }
 
+#hideButton,
+#search-btn{
+    width: 135px;
+    height: 45px;
+    background-color: #024B80;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 5px;
+    right: 200px;
+    border:none;
+    transition: all 0.3s ease-in;
+    color: #fff;
+}
+
+#hideButton{
+    margin-right: 10px;
+}
+
+#search-btn > i{
+    color: #fff;
+}
+
+#hideButton:hover, #search-btn:hover{
+    background-color: #003760;
+    cursor: pointer;
+}
 .form-costome a{
     color: white;
     width: 180px;
@@ -184,7 +216,7 @@ body::-webkit-scrollbar-thumb{
     position: absolute;
     width: 1240px;
     height: 311px;
-    background-color: #035AA6;
+    background-color: #024B80;
     border-radius: 30px;
     overflow: hidden;
     margin: 100px auto auto;
@@ -439,7 +471,7 @@ canvas{
     color: white;
     font-size: 24px;
     border-radius: 11px;
-    background-color: #005FA6;
+    background-color: #024B80;
     transition: all 0.3s ease-in;
 }
 
@@ -470,7 +502,7 @@ canvas{
     line-height: 70px;
     font-size: 27px;
     font-family: 'Roboto Condensed', sans-serif;
-    background-color: #005FA6;
+    background-color: #024B80;
     color: rgb(255, 255, 255);
 }
 
@@ -524,7 +556,7 @@ canvas{
     font-size: 26px;
     font-weight: 500;
     border-radius: 14px;
-    background-color: #F62222;
+    background-color: #FF0000;
     color: #ffffff;
     border: none;
     position: absolute;

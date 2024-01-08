@@ -175,7 +175,19 @@ def create_flight(emp_id, route_id, aircraft_id, name, departure_time, arrival_t
     db.session.commit()
 
 
+def revenue_stats(year):
+    query = db.session.query(Route.id, func.extract('month', Flight.created_date).label('flight_month'),
+                             func.sum(Ticket.total_price).label('total_price')) \
+        .join(Route, Route.id.__eq__(Flight.route_id)) \
+        .join(Ticket, Ticket.flight_id.__eq__(Flight.id)) \
+        .filter(func.extract('year', Flight.created_date).__eq__(year)) \
+        .group_by(Route.id, func.extract('month', Flight.created_date))
+
+    return query.all()
 
 
+def revenue_month_stats(route, month):
+    stats = revenue_stats(2024)
+    query = stats.filter(Route.id.__eq__(route)).filter(stats.flight_month.__eq__(month)).first()
 
-
+    return query

@@ -115,7 +115,6 @@ def employee_login():
 
 
 @app.route('/employee', methods=['get'])
-@login_required
 def employee_index():
     if current_user.is_authenticated and current_user.user_role == Role.EMPLOYEE:
         all_flights = dao.get_all_flight()

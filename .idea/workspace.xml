@@ -2,29 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c485ddd-b897-46ae-bb5f-d8948e8fa5ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/static/css/employeebase.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/employeemain.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/dao.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/dao.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/employeemain.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/employeemain.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/css/ticket.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/ticket.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/css/user_profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/user_profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/javascript/flight.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/javascript/flight.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/javascript/javascript.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/javascript/javascript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/javascript/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/javascript/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/admin/stats.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/admin/stats.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/client/Employeelogin.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/Employeelogin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/client/Employeemain.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/Employeemain.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/client/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/client/flight.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/flight.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/client/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/client/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/client/ticket.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/ticket.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/client/user_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/user_login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/client/user_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/user_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/client/user_register.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/client/user_register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -126,7 +126,7 @@ function pay(){
             alert("Ban chua dat ve!")
         }
         else{
-            alert("Dat ve thanh cong!")
+            window.location.replace("http://127.0.0.1:5000/user/user_profile");
         }
     })
 }
